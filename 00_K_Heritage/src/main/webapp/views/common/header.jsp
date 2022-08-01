@@ -1,10 +1,23 @@
+<%@page import="member.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <%
-String path = request.getContextPath();
+	String path = request.getContextPath();
+	String saveId = "";
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	Cookie[] cookies = request.getCookies();
+	
+	if(cookies != null){
+		for(Cookie c : cookies){
+			if(c.getName().equals("saveId")){
+				saveId = c.getValue();
+				break;
+			}
+		}
+	}
 %>
 
 <head>
@@ -69,8 +82,14 @@ String path = request.getContextPath();
 							id="homeDropdownMenuLink" href="<%=path%>" aria-haspopup="true"
 							aria-expanded="false"> <i class="fa fa-house-damage"></i>
 						</a></li>
+						<%if(loginMember == null){ %>
 						<li class="nav-item"><a class="nav-link"
-							href="<%=path%>/views/member/login.jsp">로그인</a></li>
+							href="<%=path%>/login.do">로그인</a></li>
+						<%} else { %>
+						<li class="nav-item"><a class="nav-link"
+							href="<%=path%>/logOut.do">로그아웃</a></li>
+						<%} %>
+						
 						<li class="nav-item"><a class="nav-link"
 							href="<%=path%>/views/member/myPage.jsp">마이페이지</a></li>
 						<li class="nav-item"><a class="nav-link"

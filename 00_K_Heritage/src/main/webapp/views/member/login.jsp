@@ -1,5 +1,23 @@
+<%@page import="member.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+<%
+	String path = request.getContextPath();
+	String saveId = "";
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
+	Cookie[] cookies = request.getCookies();
+	
+	if(cookies != null){
+		for(Cookie c : cookies){
+			if(c.getName().equals("saveId")){
+				saveId = c.getValue();
+				break;
+			}
+		}
+	}
+%>
+	
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +30,7 @@
 <meta name="robots" content="all,follow">
 <!-- Price Slider Stylesheets -->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/vendor/nouislider/nouislider.css">
+	href="<%=path%>/resources/vendor/nouislider/nouislider.css">
 <!-- Google fonts - Playfair Display-->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700">
@@ -24,17 +42,17 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.4.1/css/swiper.min.css">
 <!-- Magnigic Popup-->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/vendor/magnific-popup/magnific-popup.css">
+	href="<%=path%>/resources/vendor/magnific-popup/magnific-popup.css">
 <!-- theme stylesheet-->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/style.default.css"
+	href="<%=path%>/resources/css/style.default.css"
 	id="theme-stylesheet">
 <!-- Custom stylesheet - for your changes-->
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/css/custom.css">
+	href="<%=path%>/resources/css/custom.css">
 <!-- Favicon-->
 <link rel="shortcut icon"
-	href="<%=request.getContextPath()%>/resources/img/favicon.png">
+	href="<%=path%>/resources/img/favicon.png">
 
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -43,6 +61,7 @@
 </head>
 
 <body>
+<%if(loginMember == null){ %>
 	<div class="container-fluid px-3">
 		<div class="row min-vh-100">
 			<div class="col-md-8 col-lg-6 col-xl-5 d-flex align-items-center">
@@ -50,12 +69,13 @@
 
 					<h2>로그인</h2>
 
-					<form class="form-validate">
+					<form class="form-validate" method="post" action="<%=path%>/login">
 						<div class="mb-4">
-							<label class="form-label" for="loginUsername">ID</label> <input
+							<label class="form-label" for="loginUsername">ID</label> 
+							<input
 								class="form-control" name="loginUsername" id="loginUsername"
 								type="email" placeholder="name@Koreanculture.com"
-								autocomplete="off" required data-msg="Please enter your email">
+								autocomplete="off" required data-msg="Please enter your email" value="<%=saveId %>">
 						</div>
 						<div class="mb-4">
 							<div class="row">
@@ -73,7 +93,7 @@
 						<div class="mb-4">
 							<div class="form-check">
 								<input class="form-check-input" id="loginRemember"
-									type="checkbox"> <label
+									type="checkbox" name=saveId <%= saveId.length() == 0 ? "": "checked" %>/><label
 									class="form-check-label text-muted" for="loginRemember">
 									<span class="text-sm">아이디 저장</span>
 								</label>
@@ -104,8 +124,9 @@
 								href="<%=request.getContextPath()%>/views/member/signup.jsp">회원가입</a></small>
 						</p>
 					</form>
-					<a class="close-absolute me-md-5 me-xl-6 pt-5" href="<%=request.getContextPath()%>">
-						<svg class="svg-icon w-3rem h-3rem">
+					<a class="close-absolute me-md-5 me-xl-6 pt-5"
+						href="<%=request.getContextPath()%>"> <svg
+							class="svg-icon w-3rem h-3rem">
                 <use xlink:href="#close-1"></use>
               </svg>
 					</a>
@@ -118,6 +139,7 @@
 			</div>
 		</div>
 	</div>
+	<%} %>
 	<!-- JavaScript files-->
 	<script>
 		// ------------------------------------------------------- //
