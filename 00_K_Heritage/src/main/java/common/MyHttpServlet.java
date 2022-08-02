@@ -9,31 +9,33 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.kh.mvc.member.model.vo.Member;
+import member.MemberVo;
+
+
 
 // Servlet의 공통 기능을 모으는 코드
 public abstract class MyHttpServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	// 공통 문자열 영역
-	public static final String SESSION_USER_ID = "loginMember";
+	public static final String SESSION_USER_ID = "loginMemeberVo";
 	
 	abstract public String getServletName();
 	
-	public Member getSessionMember(HttpServletRequest req) {
+	public MemberVo getSessionMemeberVo(HttpServletRequest req) {
 		try {
 			HttpSession session = req.getSession();
-			Member loginMember = (Member)session.getAttribute(SESSION_USER_ID);
-			return loginMember;
+			MemberVo loginMemeberVo = (MemberVo)session.getAttribute(SESSION_USER_ID);
+			return loginMemeberVo;
 		} catch (Exception e) {
 		}
 		return null;
 	}
 	
-	public void setSessionMember(HttpServletRequest req, Member member) {
+	public void setSessionMemeberVo(HttpServletRequest req, MemberVo MemeberVo) {
 		try {
 			HttpSession session = req.getSession();
-			session.setAttribute(SESSION_USER_ID, member);
+			session.setAttribute(SESSION_USER_ID, MemeberVo);
 		} catch (Exception e) {
 		}
 	}

@@ -46,7 +46,7 @@ public class MemberDao {
 	// 회원가입
 	public int insertMember(Connection conn, MemberVo m) {
 		PreparedStatement pstmt = null;
-		String query = "INSERT INTO Member VALUES(UCode.nextval, ?, ?, ?, ?, ?, ?, ?, DEFAULT)";
+		String query = "INSERT INTO Member VALUES(UCode.nextval, ?, ?, ?, ?, ?, ?, 1, DEFAULT)";
 		int result = 0;
 		
 		try {
@@ -118,7 +118,6 @@ public class MemberDao {
 		Connection conn = JDBCTemplate.getConnection();
 		
 		MemberVo m = dao.findMemberById(conn, "admin@naver.com");
-		System.out.println(m.toString());
-		
+		System.out.println(m.toString());	
 	}
 }

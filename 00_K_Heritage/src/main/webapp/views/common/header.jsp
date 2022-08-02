@@ -54,7 +54,7 @@
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
-
+<script src="<%=path%>/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body style="padding-top: 72px;">

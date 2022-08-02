@@ -41,6 +41,9 @@ String path = request.getContextPath();
 <link rel="shortcut icon"
 	href="<%=request.getContextPath()%>/resources/img/favicon.png">
 
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js"></script>
+<script src="<%=path%>/resources/js/jquery-3.6.0.min.js"></script>
+
 <link rel="stylesheet"
 	href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
 	integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
@@ -56,25 +59,27 @@ String path = request.getContextPath();
 					<div class="mb-4">
 						<h2>회원가입</h2>
 					</div>
-					<form class="form-validate" action="<%=path%>/enroll">
+					<form class="form-validate" action="<%=path%>/enroll" method="post">
 						<div class="mb-4">
-							<label class="form-label" for="loginID"> ID</label>
-							<a href="#"><input type="button" value="중복검사"/></a> 
-							<input
-								class="form-control" name="loginID" id="loginID" type="text"
-								required data-msg="아이디를 입력해주세요" placeholder="이메일형식으로 입력하세요(aaaa@naver.com)">
-							
+							<label class="form-label" for="loginID"> ID</label> 
+								<input class="form-control"
+									name="loginID" id="loginID" type="text" required
+									data-msg="아이디를 입력해주세요"
+									placeholder="이메일형식으로 입력하세요(aaaa@naver.com)">
+								<input type="button" id="checkDuplicate2" value="중복검사"/> 
+
 						</div>
 						<div class="mb-4">
 							<label class="form-label" for="loginPassword"> Password</label> <input
 								class="form-control" name="loginPassword" id="loginPassword"
-								type="password" required data-msg="비밀번호를 입력해주세요">
+								type="password" required data-msg="비밀번호를 입력해주세요" onchange="check_pw()">
 						</div>
 						<div class="mb-4">
 							<label class="form-label" for="loginPassword2"> Confirm
 								your password</label> <input class="form-control" name="loginPassword2"
 								id="loginPassword2" placeholder="PASSWORD" type="password"
-								required data-msg="Please enter your password">
+								required data-msg="Please enter your password" onchange="check_pw()">
+								<span id="check"></span>
 						</div>
 						<div class="mb-4">
 							<label class="form-label" for="fullname"> FULL NAME</label> <input
@@ -82,7 +87,7 @@ String path = request.getContextPath();
 								required data-msg="이름을 입력해주세요">
 						</div>
 						<div class="mb-4">
-							<label class="form-label" for="gender" > GENDER</label> <br>
+							<label class="form-label" for="gender"> GENDER</label> <br>
 							<select class="form-select" name="gender">
 								<option selected>GENDER</option>
 								<option value="1">남성</option>
@@ -103,7 +108,7 @@ String path = request.getContextPath();
 								required data-msg="전화번호를 입력해주세요">
 						</div>
 						<div class="d-grid gap-2">
-							<button class="btn btn-lg-yj btn-primary" type="submit" onclick="pwCheck">회원가입</button>
+							<button class="btn btn-lg-yj btn-primary" type="submit">회원가입</button>
 						</div>
 						<hr class="my-3 hr-text letter-spacing-2" data-content="OR">
 						<div class="d-grid gap-2">
@@ -131,6 +136,59 @@ String path = request.getContextPath();
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+	
+		// 아이디 중복체크
+		$('#checkDuplicate2').click(()=>{
+			let id = $('#loginID').val().trim();
+			
+			if(id.length < 4){
+				alert('아이디는 최소 4글자 입니다.');
+				return;
+			}
+			
+			// 비동기식 처리 - AJAX
+			const xhr = new XMLHttpRequest();
+			xhr.open('get','${pageContext.request.contextPath}/checkId2?userId=' + id);
+			
+			// Callback 함수 셋팅 = 이벤트 함수, 리스너, 핸들러
+			xhr.onreadystatechange = ()=>{
+				if(xhr.readyState == 4 && xhr.status == 200){
+					if(xhr.responseText == 'used'){
+						alert('중복된 아이디 입니다.');
+						// html을 변경하는 코드를 작성하면 -> 동적페이징이 된다!!
+					}else{
+						alert('입력하는 아이디는 사용 가능합니다.');					
+						// html을 변경하는 코드를 작성하면 -> 동적페이징이 된다!!
+					}
+				}
+			};
+			xhr.send();
+		});	
+		
+		// 비밀번호 일치확인
+        function check_pw(){
+            var pw = document.getElementById('loginPassword').value;
+         
+            if(pw.length < 4 || pw.length>16){
+                window.alert('비밀번호는 4글자 이상, 16글자 이하만 이용 가능합니다.');
+                document.getElementById('pw').value='';
+            }
+           
+            if(document.getElementById('loginPassword').value !='' && document.getElementById('loginPassword2').value!=''){
+                if(document.getElementById('loginPassword').value==document.getElementById('loginPassword2').value){
+                    document.getElementById('check').innerHTML='비밀번호가 일치합니다.'
+                    document.getElementById('check').style.color='blue';
+                }
+                else{
+                    document.getElementById('check').innerHTML='비밀번호가 일치하지 않습니다.';
+                    document.getElementById('check').style.color='red';
+                }
+            }
+        }
+    </script>
+
 	<!-- JavaScript files-->
 	<script>
 		// ------------------------------------------------------- //
@@ -150,8 +208,7 @@ String path = request.getContextPath();
 				document.body.insertBefore(div, document.body.childNodes[0]);
 			}
 		}
-	
-		
+
 		// to avoid CORS issues when viewing using file:// protocol, using the demo URL for the SVG sprite
 		// use your own URL in production, please :)
 		// https://demo.bootstrapious.com/directory/1-0/icons/orion-svg-sprite.svg
@@ -184,6 +241,8 @@ String path = request.getContextPath();
 	</script>
 	<!-- Main Theme JS file    -->
 	<script src="<%=request.getContextPath()%>/resources/js/theme.js"></script>
+
+
 </body>
 
 </html>

@@ -16,8 +16,8 @@ import member.MemberVo;
  * 1. get 요청이 올 경우 -> 회원가입 페이지로 이동
  * 2. post 요청이 올 경우 -> 회원가입 기능 동작
  */
-@WebServlet(name="enroll", urlPatterns = "/member/enroll")
-public class EnrollServlet extends MyHttpServlet{
+@WebServlet(name="enroll", urlPatterns = "/enroll")
+public class SingUpServlet extends MyHttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private MemberService service = new MemberService();
@@ -30,11 +30,12 @@ public class EnrollServlet extends MyHttpServlet{
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("post실행됨");
 		MemberVo member = new MemberVo();
 		try {
 			member.setId(req.getParameter("loginID"));
 			member.setUPw(req.getParameter("Password"));
-			member.setUPw(req.getParameter("fullname"));
+			member.setUName(req.getParameter("fullname"));
 			member.setGender(req.getParameter("gender"));
 			member.setUEmail(req.getParameter("emailaddress"));
 			member.setUTel(req.getParameter("phonenumber"));

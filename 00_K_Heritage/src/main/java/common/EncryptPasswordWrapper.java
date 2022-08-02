@@ -3,9 +3,6 @@ package common;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
-import com.kh.common.util.EncryptUtil;
-
-
 // Filter vs Wrapper
 // Filter大  : 서블릿 이름이나 URL 패턴을 통해 사용자의 요청와 응답에 대한 전처리를 진행할수 있는 부
 //             필터링 = 욕설 필터링. 무슨무슨 자식 = XXXX XX

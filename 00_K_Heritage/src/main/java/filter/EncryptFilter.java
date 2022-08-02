@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import common.EncryptPasswordWrapper;
 
 // 서블릿 이름에 따라도 필터링 가능
-@WebFilter(filterName = "encryptFilter", servletNames = {"login", "enroll", "updatePwd"}  )
+@WebFilter(filterName = "encryptFilter", servletNames = {"login", "enroll"}  )
 public class EncryptFilter implements Filter {
 	@Override
 	public void destroy() {

@@ -82,9 +82,9 @@
 								<div class="col">
 									<label class="form-label" for="loginPassword"> Password</label>
 								</div>
-								<div class="col-auto">
-									<a class="form-text small text-primary" href="#">비밀번호 찾기</a>
-								</div>
+<!-- 								<div class="col-auto"> -->
+<!-- 									<a class="form-text small text-primary" href="#">비밀번호 찾기</a> -->
+<!-- 								</div> -->
 							</div>
 							<input class="form-control" name="loginPassword"
 								id="loginPassword" placeholder="Password" type="password"
