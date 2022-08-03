@@ -38,37 +38,37 @@ public class CultureServlet extends HttpServlet{
 			String value4 = req.getParameter("value4");
 			
 			// 확인코드
-			System.out.println(value1);
-			System.out.println(value2);
-			System.out.println(value3);
-			System.out.println(value4);
+//			System.out.println(value1);
+//			System.out.println(value2);
+//			System.out.println(value3);
+//			System.out.println(value4);
 			
 			// 문화재명검색
 			if(value1 != null && value1.length()>0) {
 				String key1 = "ccbaMnm1";
-				System.out.println(key1);
+//				System.out.println(key1);
 				
 				searchMap.put(key1, value1);
 			}
 			// 지정종목검색
 			if(value2 != null && value2.length()>0) {
 				String key2 = "ccmaName";
-				System.out.println(key2);
+//				System.out.println(key2);
 				
 				searchMap.put(key2, value2);
 			}
 			// 시대별검색
 			if(value3 != null && value3.length()>0) {
 				String key3 = "ccceName";
-				System.out.println(key3);
+//				System.out.println(key3);
 				
 				searchMap.put(key3, value3);
 			}
 			// 지역별검색
 			if(value4 != null && value4.length()>0) {
 				String key4 = "ccbaCtcdNm";
-				System.out.println(key4);
-				
+//				System.out.println(key4);
+					
 				searchMap.put(key4, value4);
 			}
 			

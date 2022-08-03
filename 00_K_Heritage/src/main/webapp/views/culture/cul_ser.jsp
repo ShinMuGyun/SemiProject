@@ -55,19 +55,19 @@
 	<br>
 	<div class="search-yj">
 		<i class="fas fa-search fa-search-yj"></i>
-		<input type="text" id="query" placeholder="문화재명 검색" name="value1" value="<%=value1 %>">
+		<input type="text" id="value1" placeholder="문화재명 검색" name="value1" value="<%=value1%>">
 	</div>
 	
 
 	<fieldset class="filter-yj">
 		<br> <b>지정 종목</b> 
-		<label><input type="radio" id="typefilter" name="value2" value="국보" > 
+		<label><input type="radio" id="value2" name="value2" value="국보" <%=value2.equals("국보") ? "checked":""%>> 
 		국보&nbsp;&nbsp;</label>
-		<label><input type="radio" id="typefilter" name="value2" value="보물" > 
+		<label><input type="radio" id="value2" name="value2" value="보물" <%=value2.equals("보물") ? "checked":""%>> 
 		보물&nbsp;&nbsp;</label>
-		<label><input type="radio" id="typefilter" name="value2" value="사적" > 
+		<label><input type="radio" id="value2" name="value2" value="사적" <%=value2.equals("사적") ? "checked":""%>> 
 		사적&nbsp;&nbsp;</label>
-		<label><input type="radio" id="typefilter" name="value2" value="천연기념물" > 
+		<label><input type="radio" id="value2" name="value2" value="천연기념물" <%=value2.equals("천연기념물") ? "checked":""%>> 
 		천연기념물&nbsp;&nbsp;</label>
 		
 		<br> <br>
@@ -76,24 +76,26 @@
 		
 		<br> <b>시대별</b> 
 		
-		<label><input type="radio" id="value3" name="value3" value="선사시대" >
+		<label><input type="radio" id="value3" name="value3" value="선사"  <%=value3.equals("선사") ? "checked":""%>>
 		선사시대 	&nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value3" name="value3" value="원삼국시대">
+		<label><input type="radio" id="value3" name="value3" value="원삼국" <%=value3.equals("원삼국") ? "checked":""%>>
 		원삼국시대&nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value3" name="value3" value="삼국시대" >
+		<label><input type="radio" id="value3" name="value3" value="삼국" <%=value3.equals("삼국") ? "checked":""%>>
 		삼국시대   &nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value3" name="value3" value="남북국시대">
+		<label><input type="radio" id="value3" name="value3" value="남북국" <%=value3.equals("남북국") ? "checked":""%>>
 		남북국시대&nbsp;&nbsp;</label>
-		<label><input type="radio" id="value3" name="value3" value="고려시대" >
+		<label><input type="radio" id="value3" name="value3" value="고려" <%=value3.equals("고려") ? "checked":""%>>
 		고려시대   &nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value3" name="value3" value="조선시대" >
+		<label><input type="radio" id="value3" name="value3" value="조선" <%=value3.equals("조선") ? "checked":""%>>
 		조선시대   &nbsp;&nbsp;</label> 
 		                                                                               
 		<br> 
 		
-		<label><input type="radio" id="value3" name="value3" value="대한제국시대" >
+		<label><input type="radio" id="value3" name="value3" value="대한제국" <%=value3.equals("대한제국") ? "checked":""%>>
 		대한제국시대 &nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value3" name="value3" value="시대미상" >	
+		<label><input type="radio" id="value3" name="value3" value="신라" <%=value3.equals("신라") ? "checked":""%>>	
+		신라시대    &nbsp;&nbsp;</label>
+		<label><input type="radio" id="value3" name="value3" value="시대미상" <%=value3.equals("시대미상") ? "checked":""%>>	
 		시대미상    &nbsp;&nbsp;</label>
 		
 		<br>
@@ -103,17 +105,18 @@
 		
 		<br> <b>지역별</b> 
 		
-		<label><input type="radio" id="value4" name="value4" value="수도권"  >
+		<!-- 여러분은 여기분 도를 권으로 수정하면 잘 될거에요! -->
+		<label><input type="radio" id="value4" name="value4" value="수도권" <%=value4.equals("수도권") ? "checked":""%>>
 		수도권&nbsp;&nbsp;</label>  
-		<label><input type="radio" id="value4" name="value4" value="충청권" >
+		<label><input type="radio" id="value4" name="value4" value="충청도" <%=value4.equals("충청도") ? "checked":""%>>
 		충청권&nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value4" name="value4" value="강원권" >
+		<label><input type="radio" id="value4" name="value4" value="강원도" <%=value4.equals("강원도") ? "checked":""%>>
 		강원권&nbsp;&nbsp;</label>  
-		<label><input type="radio" id="value4" name="value4" value="전라권" >
+		<label><input type="radio" id="value4" name="value4" value="전라도" <%=value4.equals("전라도") ? "checked":""%>>
 		전라권&nbsp;&nbsp;</label>
-		<label><input type="radio" id="value4" name="value4" value="경상권" >
+		<label><input type="radio" id="value4" name="value4" value="경상도" <%=value4.equals("경상도") ? "checked":""%>>
 		경상권&nbsp;&nbsp;</label> 
-		<label><input type="radio" id="value4" name="value4" value="제주권" >
+		<label><input type="radio" id="value4" name="value4" value="제주도" <%=value4.equals("제주도") ? "checked":""%>>
 		제주권&nbsp;&nbsp;</label> 
                                                                             
 	</fieldset>                                                             
@@ -130,20 +133,27 @@
 <!-- 사진 부분 -->
 <div class="box-parent-yj" style="text-align: center;">
 <%for(CultureDiVo c : list){%>
-	<div class="box1-yj">
-		<%if(cnt == 4 || cnt == 7) {cnt++; %>
+
+	<%if(cnt == 5 || cnt == 9) {cnt++; %>
 			<br>
-		<%} %>
-		
+	<%} else { cnt++;} %>
+	
+	<div class="box1-yj">	
 		<%if(c.getImageUrl() == null) {%>
-			<img src="<%=path%>/resources/img/culture/culimg.jpg" alt="" class="img01-yj">
+			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
+			&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
+			<img src="<%=path%>/resources/img/culture/culimg.jpg" alt="" class="img01-yj"></a>
 		<%} else {%>
-			<img src="<%=c.getImageUrl() %>" alt="" class="img01-yj">
+			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
+			&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
+			<img src="<%=c.getImageUrl() %>" alt="" class="img01-yj"></a>
 		<%} %>
 		
 		<br><%=c.getCcmaName() %><br>
 		<br>
-		<b><%=c.getCcbaMnm1() %></b>
+		<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
+		&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
+		<b class="text-black"><%=c.getCcbaMnm1() %></b></a>
 	</div>
 <%} %>
 </div>
@@ -180,35 +190,56 @@
 
 <script type="text/javascript">
 function movePage(pageUrl){
-	alert(pageUrl)
-	try{
-		var value1 = document.getElementById("value1"); // 문화재명
-		var value2 = document.getElementById("value2"); // 종목명
-		var value3 = document.getElementById("value3"); // 시대명
-		var value4 = document.getElementById("value4"); // 지역명
 		
+		var value1  = document.getElementById("value1"); // 문화재명
+ 		var value2 = document.getElementsByName("value2"); // 종목명
+ 		var value3 = document.getElementsByName("value3"); // 시대명
+ 		var value4 = document.getElementsByName("value4"); // 지역명
 		
-		if(value1 != null && value1.length > 0 ){
-			pageUrl = pageUrl + '&value1=' + value1.value;
+		if(value1.value != null && value1.value.length > 0 ){
+			pageUrl = pageUrl + '&value1='+ value1.value;
 		}
 		
-		if(value1 != null && value2.length > 0 ){
-			pageUrl = pageUrl + '&value2=' + value2.value;
+		if(value2 != null && value2.length > 0 ){
+			for(var i = 0; i < value2.length; i++){
+				if(value2[i].checked == true){
+					pageUrl = pageUrl + '&value2=' + value2[i].value;	
+				}
+			}
 		}
 		
 		if(value3 != null && value3.length > 0 ){
-			pageUrl = pageUrl + '&value3=' + value3.value;
+			for(var i = 0; i < value3.length; i++){
+				if(value3[i].checked == true){
+					pageUrl = pageUrl + '&value3=' + value3[i].value;	
+				}
+			}
 		}
 		
 		if(value4 != null && value4.length > 0 ){
-			pageUrl = pageUrl + '&value4=' + value4;
+			for(var i = 0; i < value4.length; i++){
+				if(value4[i].checked == true){
+					pageUrl = pageUrl + '&value4=' + value4[i].value;	
+				}
+			}
 		}
 		
-		alert(pageUrl);
+// 		alert(pageUrl);
 		location.href = encodeURI(pageUrl);
-	}
-	catch (e) {}	
 }
+
+
+// document.getElementById('reset-btn-yj').onclick = function() {
+// 	var radio1 = document.querySelector('input[type=text][name=value1]');
+// 	radio1.checked = false;
+	
+// 	var radio2 = document.querySelector('input[type=radio][name=value2]:checked');
+// 	radio2.value.checked = false;
+// 	var radio3 = document.querySelector('input[type=radio][name=value3]:checked');
+// 	radio3.value.checked = false;
+// 	var radio4 = document.querySelector('input[type=radio][name=value4]:checked');
+// 	radio4.value.checked = false;
+// }
 
 </script>
 

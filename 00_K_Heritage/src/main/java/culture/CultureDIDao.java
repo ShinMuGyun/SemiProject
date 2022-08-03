@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import common.JDBCTemplate;
 import common.PageInfo;
 
 public class CultureDIDao {
@@ -280,21 +281,18 @@ public class CultureDIDao {
 	
 	
 	//문화제 상세 페이지(문화재)
-	public CultureDiVo getcuCultureDiVo(Connection conn, String ccbaasno, String ccbaMnm1, int ccbakdcd) {
+	public CultureDiVo getcuCultureDiVo(Connection conn, String ccbaMnm1) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		CultureDiVo culturediVo = new CultureDiVo();
 		
 		String sql = "SELECT * FROM culturaldi "+
-					 "where CCBAASNO = ? " +
-					 "AND ccbaMnm1 = ? " +
-					 "AND ccbakdcd = ? ";
+					 "where ccbaMnm1 = ?";
+					 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, ccbaasno);
-			pstmt.setString(2, ccbaMnm1);
-			pstmt.setInt(3, ccbakdcd);
+			pstmt.setString(1, ccbaMnm1);
 			rs = pstmt.executeQuery();
 			
 			int cnt = 1;
@@ -331,36 +329,116 @@ public class CultureDIDao {
 	
 	
 	//문화제 상세 페이지(이미지)
-	public CultureImgVo getcuCultureimg(Connection conn, String ccbaasno, String ccbaMnm1, int ccbakdcd) {
+	public List<CultureImgVo> getcuCultureimg(Connection conn, String ccbaasno, String ccbactcd, int ccbakdcd) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		List<CultureImgVo> list = new ArrayList<CultureImgVo>();
 		
-		CultureImgVo img = new CultureImgVo();
 		
 		String sql = "SELECT imageurl, ccimdesc FROM image "+
 					 "where CCBAASNO = ? " +
-					 "AND ccbaMnm1 = ? " +
+					 "AND ccbactcd = ? " +
 					 "AND ccbakdcd = ? ";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, ccbaasno);
-			pstmt.setString(2, ccbaMnm1);
+			pstmt.setString(2, ccbactcd);
 			pstmt.setInt(3, ccbakdcd);
 			rs = pstmt.executeQuery();
 			
-			int cnt = 1;
-			
 			while (rs.next()) {
-				img.setImageUrl(rs.getString(cnt++));
-				img.setCcimDesc(rs.getString(cnt++));
+				CultureImgVo img = new CultureImgVo();
+				img.setImageUrl(rs.getString("imageUrl"));
+				img.setCcimDesc(rs.getString("ccimDesc"));
+				list.add(img);
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
 			close(rs);
 		}
-		return img;
+		return list;
 	}
 	
+	// 주변문화재 찾기
+	// 위도 경도 0
+	public List<CultureDiVo> surroundingList(Connection conn, double longitude, double latitude){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<CultureDiVo> list = new ArrayList<CultureDiVo>();
+		
+		String sql = "select *  from culturaldi "
+					+ "where longitude between ? and ?"
+					+ "AND latitude between ? and ?"
+					+ "order by longitude desc";
+		int cnt = 1;
+		
+//		System.out.println(longitude);
+//		System.out.println(latitude);
+		
+		Double startlongitude = Math.floor((longitude - 0.01)*100)/100.0;
+		Double startlatitude = Math.floor((latitude - 0.01)*100)/100.0;
+		
+//		System.out.println(startlongitude);
+//		System.out.println(startlatitude);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(cnt++, startlongitude);
+			pstmt.setDouble(cnt++, longitude);
+			pstmt.setDouble(cnt++, startlatitude);
+			pstmt.setDouble(cnt++, latitude);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				CultureDiVo c = new CultureDiVo();
+				c.setCcbaAsno(rs.getString("ccbaasno"));
+				c.setCcbaKdcd(rs.getInt("ccbaKdcd"));
+				c.setCcbaCtcd(rs.getString("ccbaCtcd"));
+				c.setLongitude(rs.getString("longitude"));
+				c.setLatitude(rs.getString("latitude"));
+				c.setCcmaName(rs.getString("ccmaName"));
+				c.setCcbaMnm1(rs.getString("ccbaMnm1"));
+				c.setGcodeName(rs.getString("gcodeName"));
+				c.setBcodeName(rs.getString("bcodeName"));
+				c.setMcodeName(rs.getString("mcodeName"));
+				c.setScodeName(rs.getString("scodeName"));
+				c.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
+				c.setCcbaQuan(rs.getString("ccbaQuan"));
+				c.setCcbaAsdt(rs.getString("ccbaAsdt"));
+				c.setCcbaLcad(rs.getString("ccbaLcad"));
+				c.setCcceName(rs.getString("ccceName"));
+				c.setCcbaAdmin(rs.getString("ccbaAdmin"));
+				c.setImageUrl(rs.getString("imageUrl"));
+				c.setContent(rs.getString("content"));
+				
+				list.add(c);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		System.out.println(list.size());
+		return list;
+	}
+	
+	
+	public static void main(String[] args) {
+//		String ccbaasno = "00010000";
+//		String ccbactcd = "11";
+//		int ccbakdcd = 11;
+//		
+//		Connection conn = JDBCTemplate.getConnection();
+//		
+//		CultureDIDao dao = new CultureDIDao();
+//		
+//		for(CultureImgVo c : dao.getcuCultureimg(conn, ccbaasno, ccbactcd, ccbakdcd)) {
+//			System.out.println(c.getImageUrl());
+//		};
+//		
+//		System.out.println(dao.getcuCultureimg(conn, ccbaasno, ccbactcd, ccbakdcd).size());
+	}
 }

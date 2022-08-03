@@ -53,4 +53,25 @@ public class CultureService {
 		close(conn);
 		return list;
 	}
+	
+	public CultureDiVo getcultCultureDiVo(String ccbaMnm1) {
+		Connection conn = getConnection();
+		CultureDiVo culture = dao.getcuCultureDiVo(conn, ccbaMnm1);
+		close(conn);
+		return culture;
+	}
+	
+	public List<CultureImgVo> getCultureImgVos(String ccbaasno, String ccbactcd, int ccbakdcd) {
+		Connection conn = getConnection();
+		List<CultureImgVo> img = dao.getcuCultureimg(conn, ccbaasno, ccbactcd, ccbakdcd);
+		close(conn);
+		return img;
+	}
+	
+	public List<CultureDiVo> surroundingList(double longitude, double latitude){
+		Connection conn = getConnection();
+		List<CultureDiVo> img = dao.surroundingList(conn, longitude, latitude);
+		close(conn);
+		return img;
+	}
 }
