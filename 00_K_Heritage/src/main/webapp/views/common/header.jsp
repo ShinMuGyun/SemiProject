@@ -79,7 +79,7 @@
 				<div class="collapse navbar-collapse" id="navbarCollapse">
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item dropdown"><a class="nav-link active"
-							id="homeDropdownMenuLink" href="<%=path%>" aria-haspopup="true"
+							id="homeDropdownMenuLink" href="<%=path%>/index.do" aria-haspopup="true"
 							aria-expanded="false"> <i class="fa fa-house-damage"></i>
 						</a></li>
 						<%if(loginMember == null){ %>
@@ -93,7 +93,7 @@
 						<li class="nav-item"><a class="nav-link"
 							href="<%=path%>/views/member/myPage.jsp">마이페이지</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<%=path%>/views/culture/cul_ser.jsp">문화재검색</a></li>
+							href="<%=path%>/culList">문화재검색</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="<%=path%>/views/museum/mu_ser.jsp">박물관검색</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>

@@ -34,7 +34,7 @@ public class SingUpServlet extends MyHttpServlet{
 		MemberVo member = new MemberVo();
 		try {
 			member.setId(req.getParameter("loginID"));
-			member.setUPw(req.getParameter("Password"));
+			member.setUPw(req.getParameter("loginPassword"));
 			member.setUName(req.getParameter("fullname"));
 			member.setGender(req.getParameter("gender"));
 			member.setUEmail(req.getParameter("emailaddress"));

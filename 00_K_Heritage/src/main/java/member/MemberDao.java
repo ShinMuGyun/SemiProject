@@ -57,7 +57,6 @@ public class MemberDao {
 			pstmt.setString(4, m.getId());
 			pstmt.setString(5, m.getUPw());
 			pstmt.setString(6, m.getGender());
-			pstmt.setString(7, m.getMembershipClass());
 			
 			result = pstmt.executeUpdate();
 			
@@ -72,7 +71,7 @@ public class MemberDao {
 	// 회원정보업데이트
 	public int updateMember(Connection conn, MemberVo m) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE MEMBER SET UName = ?,UTel = ?,UEmail = ?,UPw = ?,gender = ? WHERE ucode = '1'";
+		String query = "UPDATE MEMBER SET UName = ?,UTel = ?,UEmail = ?,UPw = ?,gender = ? WHERE ucode = ?";
 		int result = 0;
 		int cnt = 1;
 		try {
@@ -82,6 +81,7 @@ public class MemberDao {
 			pstmt.setString(cnt++, m.getUEmail());
 			pstmt.setString(cnt++, m.getUPw());
 			pstmt.setString(cnt++, m.getGender());
+			pstmt.setInt(cnt++, m.getUCode());
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
