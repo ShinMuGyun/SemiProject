@@ -90,12 +90,14 @@
 							href="<%=path%>/logOut.do">로그아웃</a></li>
 						<%} %>
 						
+						<%if(loginMember != null){ %>
 						<li class="nav-item"><a class="nav-link"
-							href="<%=path%>/views/member/myPage.jsp">마이페이지</a></li>
+							href="<%=path%>/mypage.do">마이페이지</a></li>
+							<%} %>
 						<li class="nav-item"><a class="nav-link"
 							href="<%=path%>/culList">문화재검색</a></li>
 						<li class="nav-item"><a class="nav-link"
-							href="<%=path%>/views/museum/mu_ser.jsp">박물관검색</a></li>
+							href="<%=path%>/museum">박물관검색</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
 						<li class="nav-item"><a class="nav-link" href="#">퀴즈</a></li>
 						<li class="nav-item"><a class="nav-link"

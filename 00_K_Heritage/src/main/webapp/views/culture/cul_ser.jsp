@@ -42,7 +42,7 @@
 
 <style>
 /*페이지바*/
-	div#pageBar{margin-top:10px; text-align:center; background-color:rgba(0, 188, 212, 0.3);}
+	div#pageBar{margin-top:10px; text-align:center;}
 </style>
 
 
@@ -140,12 +140,10 @@
 	
 	<div class="box1-yj">	
 		<%if(c.getImageUrl() == null) {%>
-			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
-			&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
+			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>">
 			<img src="<%=path%>/resources/img/culture/culimg.jpg" alt="" class="img01-yj"></a>
 		<%} else {%>
-			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
-			&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
+			<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>">
 			<img src="<%=c.getImageUrl() %>" alt="" class="img01-yj"></a>
 		<%} %>
 		

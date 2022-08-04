@@ -24,7 +24,6 @@ public class SingUpServlet extends MyHttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		Member member = getSessionMember(req);
 		resp.sendRedirect(req.getContextPath() + "/views/member/enroll.jsp");
 	}
 	
@@ -56,7 +55,6 @@ public class SingUpServlet extends MyHttpServlet{
 			req.setAttribute("msg", "회원가입 실패!! (code:100=입력값 문제)");
 			req.setAttribute("location", "/member/enroll");
 			req.getRequestDispatcher("/views/common/msg.jsp").forward(req, resp);
-//			sendCommonPage("회원가입 실패", "/member/enroll", req, resp);
 		}
 	}
 

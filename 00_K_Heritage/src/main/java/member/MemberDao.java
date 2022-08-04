@@ -71,7 +71,7 @@ public class MemberDao {
 	// 회원정보업데이트
 	public int updateMember(Connection conn, MemberVo m) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE MEMBER SET UName = ?,UTel = ?,UEmail = ?,UPw = ?,gender = ? WHERE ucode = ?";
+		String query = "UPDATE MEMBER SET UName = ?,UTel = ?,UEmail = ?,UPw = ?,gender = ? WHERE ucode = ? ";
 		int result = 0;
 		int cnt = 1;
 		try {

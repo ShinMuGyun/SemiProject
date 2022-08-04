@@ -1,7 +1,14 @@
+<%@page import="main.MainVO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/views/common/header.jsp"%>
 
-<%@ include file="/views/common/header.jsp" %>
+<%
+int cnt = 10;
+List<MainVO> todaylist = (List<MainVO>)request.getAttribute("todaylist");
+List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
+%>
 
 <section class="hero-home">
 	<div class="swiper-container hero-slider">
@@ -36,7 +43,7 @@
 			</div>
 			<div
 				class="col-md-4 d-lg-flex align-items-center justify-content-end">
-				<a class="text-muted text-sm" href="category.html"> 더 보기<i
+				<a class="text-muted text-sm" href="<%=path%>/culList"> 더 보기<i
 					class="fas fa-angle-double-right ms-2"></i>
 				</a>
 			</div>
@@ -45,69 +52,20 @@
 			<!-- Additional required wrapper-->
 			<div class="swiper-wrapper pb-5">
 				<!-- Slides-->
+				
+				<!-- 오늘의 문화재 -->
+				<% for(MainVO m : todaylist) { %>
 				<div class="swiper-slide h-auto px-2">
 					<div
 						class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0">
-						<a class="tile-link" href="category.html"></a><img
-							class="bg-image"
-							src="<%=path%>/resources/img/photo/1.jpg"
-							alt="Card image">
+						<a class="tile-link" href="<%=path%>/cul_di?CcbaMnm1=<%=m.getCcbaMnm1()%>"></a>
+						<img class="bg-image" src="<%=m.getImageUrl() %>" alt="Card image">
 						<div class="card-body overlay-content">
-							<h6 class="card-title text-shadow text-uppercase">경주 감산사
-								석조미륵보살입상</h6>
+							<h6 class="card-title text-shadow text-uppercase"><%=m.getCcbaMnm1() %></h6>
 						</div>
 					</div>
 				</div>
-				<div class="swiper-slide h-auto px-2">
-					<div
-						class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0">
-						<a class="tile-link" href="category.html"></a><img
-							class="bg-image"
-							src="<%=path%>/resources/img/photo/2.jpg"
-							alt="Card image">
-						<div class="card-body overlay-content">
-							<h6 class="card-title text-shadow text-uppercase">청자 상감운학문
-								매병</h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide h-auto px-2">
-					<div
-						class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0">
-						<a class="tile-link" href="category.html"></a><img
-							class="bg-image"
-							src="<%=path%>/resources/img/photo/3.jpg"
-							alt="Card image">
-						<div class="card-body overlay-content">
-							<h6 class="card-title text-shadow text-uppercase">금동미륵보살반가사유상(1962-2)</h6>
-
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide h-auto px-2">
-					<div
-						class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0">
-						<a class="tile-link" href="category.html"></a><img
-							class="bg-image"
-							src="<%=path%>/resources/img/photo/4.jpg"
-							alt="Card image">
-						<div class="card-body overlay-content">
-							<h6 class="card-title text-shadow text-uppercase">훈민정음</h6>
-						</div>
-					</div>
-				</div>
-				<div class="swiper-slide h-auto px-2">
-					<div
-						class="card card-poster gradient-overlay hover-animate mb-4 mb-lg-0">
-						<a class="tile-link" href="category.html"></a><img
-							class="bg-image"
-							src="<%=path%>/resources/img/photo/11.jpg"
-							alt="Card image">
-						<div class="card-body overlay-content">
-							<h6 class="card-title text-shadow text-uppercase">백제 금동대향로</h6>
-						</div>
-					</div>
-				</div>
+				<%} %>
 			</div>
 			<div class="swiper-pagination d-md-none"></div>
 		</div>
@@ -187,95 +145,50 @@
 	</div>
 </section>
 
+<%-- 인기박물관 소개 배너 --%>
 <section class="py-4 bg-gray-100">
-	<div class="container">
-		<div class="row mb-5">
-			<div class="col-md-8">
-				<h2>박물관</h2>
-				<p class="subtitle text-orange">7월의 인기 박물관</p>
-			</div>
-			<div
-				class="col-md-4 d-md-flex align-items-center justify-content-end">
-				<a class="text-muted text-sm" href="blog.html"> 더 보기<i
-					class="fas fa-angle-double-right ms-2"></i>
-				</a>
-			</div>
-		</div>
-		<div class="row">
+	<div class="container"><div class="row mb-5"><div class="col-md-8">
+				<h2>박물관</h2><p class="subtitle text-orange">7월의 인기 박물관</p></div>
+			<div class="col-md-4 d-md-flex align-items-center justify-content-end">
+				<a class="text-muted text-sm" href="<%=path%>/museum"> 더 보기
+				<i class="fas fa-angle-double-right ms-2"></i></a></div></div><div class="row">
 
-			<!-- blog item-->
+			<%-- 인기박물관 소개 상세 / photo(9~10) --%>
+			<% for(MainVO m : poplist) { %>
 			<div class="col-lg-4 col-sm-6 mb-4 hover-animate">
 				<div class="card shadow border-0 h-100">
-					<a href="post.html"><img class="img-fluid card-img-top"
-						src="<%=path%>/resources/img/photo/9.jpg"
+					<a href="<%=path%>/views/museum/mu_det.jsp"><img class="img-fluid card-img-top"
+						src="<%=path%>/resources/img/photo/<%=cnt--%>.jpg"
 						alt="..." /></a>
 					<div class="card-body">
-						<h5 class="my-2">
-							<a class="text-dark" href="post.html">국립중앙박물관</a>
-						</h5>
-						<p class="text-gray-500 text-sm my-3">
-							<i class="far fa-map me-2"></i>서울특별시
-						</p>
-						<p class="my-2 text-muted text-sm">운영시간(평일) : 10 : 00 ~ 18 :
-							00</p>
-						<p class="my-2 text-muted text-sm">운영시간(주말) : 10 : 00 ~ 19 :
-							00</p>
-						<a class="text-orange ps-0 btn" href="post.html">더 보기<i
+						<h5 class="my-2"><a class="text-dark" href="<%=path%>/views/museum/mu_det.jsp"><%=m.getFcltyNm() %></a></h5>
+						<p class="text-gray-500 text-sm my-3"><i class="far fa-map me-2"></i><%=m.getAreadr() %></p>
+						<p class="my-2 text-muted text-sm">운영시간(평일) : <%=m.getWeekdayOperOpenHhmm() %> ~ <%=m.getWeekdayOperColseHhmm() %> </p>
+						<p class="my-2 text-muted text-sm">운영시간(주말) : <%=m.getHolidayOperOpenHhmm() %> ~ <%=m.getHolidayCloseOpenHhmm() %></p>
+						<a class="text-orange ps-0 btn" href="<%=path%>/views/museum/mu_det.jsp">더 보기<i
 							class="fa fa-long-arrow-alt-right ms-2"></i></a>
 					</div>
 				</div>
 			</div>
+			<% } %>
 
-			<!-- blog item-->
+			<%-- 전체 데이터 소개 --%>
 			<div class="col-lg-4 col-sm-6 mb-4 hover-animate">
 				<div class="card shadow border-0 h-100">
-					<a href="post.html"><img class="img-fluid card-img-top"
-						src="<%=path%>/resources/img/photo/10.jpg"
-						alt="..." /></a>
 					<div class="card-body">
-						<h5 class="my-2">
-							<a class="text-dark" href="#">서울시립미술관</a>
-						</h5>
-						<p class="text-gray-500 text-sm my-3">
-							<i class="far fa-map me-2"></i>서울특별시
-						</p>
-						<p class="my-2 text-muted text-sm">운영시간(평일) : 10 : 00 ~ 20 :
-							00</p>
-						<p class="my-2 text-muted text-sm">운영시간(주말) : 10 : 00 ~ 19 :
-							00</p>
-						<a class="btn text-orange ps-0" href="#">더 보기<i
-							class="fa fa-long-arrow-alt-right ms-2"></i></a>
-					</div>
-				</div>
-			</div>
-
-			<!-- blog item-->
-			<div class="col-lg-4 col-sm-6 mb-4 hover-animate">
-				<div class="card shadow border-0 h-100">
-
-					<div class="card-body">
-
-						<h5 class="my-2">전국의 박물관∙미술관들이소장하고 있는</h5>
-						<h5 class="my-2">다양한 문화유산들을 만나보세요.</h5>
-
+						<h5 class="my-2">전국의 박물관∙미술관이 소장하고 있는</h5>
+						<h5 class="my-2">다양한 문화유산을 만나보세요.</h5>
 						<br>
 						<br>
-
 						<h1 class="text-orange">
 							&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%=path %>/resources/img/photo/7.png"></img>
-							&nbsp;&nbsp;&nbsp;&nbsp; 331
-						</h1>
+							&nbsp;&nbsp;&nbsp;&nbsp; 331</h1>
 						<p class="my-2 text-muted text-sm">소장품 보유 기관</p>
-
 						<br>
-
 						<h1 class="text-orange">
 							&nbsp;&nbsp;&nbsp;&nbsp;<img src="<%=path %>/resources/img/photo/8.png"></img>
-							&nbsp;&nbsp;&nbsp;&nbsp; 2,360,170
-						</h1>
-						<p class="my-2 text-muted text-sm">&nbsp;&nbsp;&nbsp;&nbsp;전체
-							소장품</p>
-
+							&nbsp;&nbsp;&nbsp;&nbsp; 2,360,170</h1>
+						<p class="my-2 text-muted text-sm">&nbsp;&nbsp;&nbsp;&nbsp;전체 소장품</p>
 					</div>
 				</div>
 			</div>
@@ -283,91 +196,22 @@
 	</div>
 </section>
 
-<!-- Instagram-->
+<%-- footer 상단 이미지 --%>
 <section>
 	<div class="container-fluid px-0">
 		<div class="swiper-container instagram-slider">
 			<div class="swiper-wrapper">
+			<% for(int i=0; i<20; i++) { %>
+			 <% for(int insta=1; insta<7; insta++) { %>
 				<div class="swiper-slide overflow-hidden">
 					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (1).png" alt=" "></a>
+						src="<%=path %>/resources/img/instagram/instagram_11 (<%=insta%>).png" alt=" "></a>
 				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (2).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (3).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (4).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (5).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (6).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (2).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (4).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (6).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (1).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (3).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (5).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (6).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (4).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (2).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (5).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (3).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (1).png" alt=" "></a>
-				</div>
-				<div class="swiper-slide overflow-hidden">
-					<a href="#"><img class="img-fluid hover-scale"
-						src="<%=path %>/resources/img/instagram/instagram_11 (4).png" alt=" "></a>
-				</div>
+				<% }%>
+				<%} %>
 			</div>
 		</div>
 	</div>
 </section>
-
 <%@ include file="/views/common/footer.jsp"%>
 

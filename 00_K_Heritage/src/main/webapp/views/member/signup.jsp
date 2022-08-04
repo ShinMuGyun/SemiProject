@@ -90,9 +90,9 @@ String path = request.getContextPath();
 							<label class="form-label" for="gender"> GENDER</label> <br>
 							<select class="form-select" name="gender">
 								<option selected>GENDER</option>
-								<option value="1">남성</option>
-								<option value="2">여성</option>
-								<option value="3">기타</option>
+								<option value="남성">남성</option>
+								<option value="여성">여성</option>
+								<option value="기타">기타</option>
 							</select>
 						</div>
 						<div class="mb-4">

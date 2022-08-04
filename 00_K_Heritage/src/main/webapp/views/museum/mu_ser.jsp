@@ -1,6 +1,45 @@
+<%@page import="common.PageInfo"%>
+<%@page import="Museum.Museum"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <%@ include file="/views/common/header.jsp"%>
+
+
+<%
+List<Museum> list = (List<Museum>) request.getAttribute("list");
+PageInfo pageInfo = (PageInfo) request.getAttribute("pageInfo");
+
+int cnt = 1;
+
+String name = "";
+String area = "";
+String sort = "";
+
+String nameParamValue = request.getParameter("name");
+String areaParamValue = request.getParameter("area");
+String sortParamValue = request.getParameter("sort");
+
+if (nameParamValue != null && nameParamValue.length() > 0) {
+	name = request.getParameter("name");
+}
+
+if (areaParamValue != null && areaParamValue.length() > 0) {
+	area = request.getParameter("area");
+}
+
+if (sortParamValue != null && sortParamValue.length() > 0) {
+	sort = request.getParameter("sort");
+}
+%>
+
+<style>
+/*페이지바*/
+	div#pageBar{margin-top:10px; text-align:center; }
+</style>
+
+
 <section class="py-6 bg-gray-100 font1">
 	<!-- 제목 타이틀  -->
 	<div class="container py-sm-0 w-100">
@@ -13,377 +52,187 @@
 	</div>
 	<hr class="hr-jhj">
 
-	<!-- 검색창 -->
-	<div class="container">
-		<div class="col-lg-10 d-flex align-items-center form-group mb-3-jh">
-			<div class="jhj-1">박물관 명칭 검색</div>
-			<div class="input-label-absolute input-label-absolute-right w-10">
-				<input class="form-control-jhj border-1-jhj shadow-0" type="text"
-					name="location" placeholder="이름" id="location">
-			</div>
-			<div class="jhj-2">지역별 검색</div>
-			<select class="selectpicker" title="수도권"
-				data-style="btn-form-control">
-				<option value="city_1">수도권</option>
-				<option value="city_2">충청권</option>
-				<option value="city_3">강원권</option>
-				<option value="city_4">전라권</option>
-				<option value="city_5">경상권</option>
-				<option value="city_6">제주권</option>
-			</select>
+	<!-- 검색창 시작 -->
+	<div class="container center style=">
+		<form action="<%=path%>/museum" method="GET">
+			<div class="col-lg-10 d-flex align-items-center form-group mb-3-jh">
 
-			<div class="jhj-3">정렬</div>
-			<select class="selectpicker" title="인기순"
-				data-style="btn-form-control">
-				<option value="sort_1">인기순</option>
-				<option value="sort_2">별점순</option>
-			</select>
-		</div>
+				<label class="jhj-1">박물관 명칭 검색</label>
+				<div class="input-label-absolute input-label-absolute-right w-10">
+					<input class="form-control-jhj border-1-jhj shadow-0" 
+					id="name" name="name" value="<%=name%>" type="text" class="input_text" placeholder="이름">
+				</div>
 
 
-		<!-- 박물관 검색창 -->
-		<div class="swiper-container pt-3 w-100"
-			data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
-			<div class="swiper-wrapper pb-5">
-				<div class="h-auto px-2">
-					<!-- 1번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e33b1527bfe2abaf92">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay ">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-1.PNG"
-									alt="Modern, Well-Appointed Room" /> <a class="tile-link"
-									href="mu_det.html"></a>
-								<div class="card-img-overlay-bottom z-index-40"></div>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                            <use xlink:href="#heart-1"> </use>
-                                            </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="<%=path%>/views/museum/mu_det.jsp">국립중앙박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">서울시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="h-auto px-2">
-					<!-- 2번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e322f3375db4d89128">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-2.PNG"
-									alt="Cute Quirky Garden apt, NYC adjacent" /> <a
-									class="tile-link" href="detail-rooms.html"></a>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                            <use xlink:href="#heart-1"></use>
-                                            </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">국립익산박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">서울시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="h-auto px-2">
-					<!-- 3번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e3a31e62979bf147c9">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-3.PNG"
-									alt="Modern Apt - Vibrant Neighborhood!" /> <a
-									class="tile-link" href="detail-rooms.html"></a>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                            <use xlink:href="#heart-1"> </use>
-                                            </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">국립해양박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">부산시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="h-auto px-2">
-					<!-- 4번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e3503eb77d487e8082">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-4.PNG"
-									alt="Sunny Private Studio-Apartment" /> <a class="tile-link"
-									href="detail-rooms.html"></a>
-								<div class="card-img-overlay-bottom z-index-20"></div>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                            <use xlink:href="#heart-1"> </use>
-                                            </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">국립 한글박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">서울시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+				<label class="jhj-2">지역별 검색</label> 
+				
+				<select class="selectpicker" title="--------선택--------" data-style="btn-form-control" name="area" id="area">
+					<%if(area.equals("수도권")) {%>
+						<option value="수도권" selected=selected>수도권</option>
+					<%} else {%>
+						<option value="수도권">수도권</option>
+					<%} %>
+					<%if(area.equals("충청권")) {%>
+						<option value="충청권" selected=selected>충청권</option>
+					<%} else {%>
+						<option value="충청권">충청권</option>
+					<%} %>
+					<%if(area.equals("강원권")) {%>
+						<option value="강원권" selected=selected>강원권</option>
+					<%} else {%>
+						<option value="강원권">강원권</option>
+					<%} %>
+					<%if(area.equals("전라권")) {%>
+						<option value="전라권" selected=selected>전라권</option>
+					<%} else {%>
+						<option value="전라권">수도권</option>
+					<%} %>
+					<%if(area.equals("경상권")) {%>
+						<option value="경상권" selected=selected>경상권</option>
+					<%} else {%>
+						<option value="경상권">경상권</option>
+					<%} %>
+					<%if(area.equals("제주권")) {%>
+						<option value="제주권" selected=selected>제주권</option>
+					<%} else {%>
+						<option value="제주권">제주권</option>
+					<%} %>
+				</select> 
+				
+				<label class="jhj-3">정렬</label> 
+				
+				<select class="selectpicker" title="--------선택--------" data-style="btn-form-control" name="sort" id="sort">
+					<%if(sort.equals("오름차순")) {%>
+						<option value="오름차순" selected="selected">오름차순</option>
+					<%} else {%>
+						<option value="오름차순">오름차순</option>
+					<%} %>
+					
+					<%if(sort.equals("내림차순")) {%>
+						<option value="내림차순" selected="selected">내림차순</option>
+					<%} else {%>
+						<option value="내림차순">내림차순</option>
+					<%} %>
+				</select>
+
+
+				<div class="col-lg-2 d-grid form-group mb-1 jhj-4">
+					<button class="btn btn-primary h-100 w-50" type="submit">검색
+					</button>
 				</div>
 			</div>
-		</div>
+		</form>
+		<!-- 검색창 끝 -->
 
-		<!-- 두번째 줄 박물관 -->
-		<div class="swiper-container pt-3 w-100"
-			data-swiper="{&quot;slidesPerView&quot;:4,&quot;spaceBetween&quot;:20,&quot;loop&quot;:true,&quot;roundLengths&quot;:true,&quot;breakpoints&quot;:{&quot;1200&quot;:{&quot;slidesPerView&quot;:3},&quot;991&quot;:{&quot;slidesPerView&quot;:2},&quot;565&quot;:{&quot;slidesPerView&quot;:1}},&quot;pagination&quot;:{&quot;el&quot;:&quot;.swiper-pagination&quot;,&quot;clickable&quot;:true,&quot;dynamicBullets&quot;:true}}">
-			<div class="swiper-wrapper pb-5">
-				<div class="h-auto px-2">
-					<!-- 1번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e33b1527bfe2abaf92">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-5.PNG"
-									alt="Modern, Well-Appointed Room" /> <a class="tile-link"
-									href="detail-rooms.html"></a>
-								<div class="card-img-overlay-bottom z-index-20"></div>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                          <use xlink:href="#heart-1"> </use>
-                                          </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
+		<!-- 박물관 사진 시작 -->
+		
+        <div class="box-parent-yj" style="text-align: center;">		
+			<%for (Museum m : list) { %>
+			
+            <div class="box1-jhj">
+                <!-- 1번째 -->
+                <div class="card h-100 border-0 shadow">
+                    <div class="card-img-top overflow-hidden gradient-overlay " >
+                        <img class="img-full-main-jh" src="<%=path%>/resources/img/museum-<%=cnt++ %>.PNG" alt="" />
+                       <%if(cnt == 9) { cnt = 1;%>
+								<%} %>
+                        <a class="tile-link" href="mu_det.html"></a>
+                        <div class="card-img-overlay-bottom z-index-40"></div>
+                        <div class="card-img-overlay-top text-end">
+                            <a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> <svg class="svg-icon text-white">
+                                    <use xlink:href="#heart-1"> </use>
+                                    </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body d-flex align-items-center">
+                        <div class="w-100">
+                            <h6 class="card-title">
 										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">서울공예박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">서울시</p>
+											href="<%=path%>/views/museum/mu_det.jsp"><%=m.getFcltyNm()%></a>
+                            </h6>
+                            
+                          	<div class="d-flex card-subtitle mb-3">
+										<p class="flex-grow-1 mb-0 text-muted text-sm"><%=m.getAreadr()%></p>
+										
 										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i>
+											<%if(m.getCnt() >= 0) {%>
+											<i class="fa fa-star text-warning"></i>
+											<%}%>
+											<%if(m.getCnt() > 10){ %>
+											<i class="fa fa-star text-warning"></i>
+											<%}%>
+											<%if(m.getCnt() > 20){ %>
+											<i class="fa fa-star text-warning"></i>
+											<%}%>
+											<%if(m.getCnt() > 30){ %>
+											<i class="fa fa-star text-warning"></i>
+											<%}%>
+											<%if(m.getCnt() > 40){ %>
+											<i class="fa fa-star text-warning"></i>
+											<%}%>
 										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="h-auto px-2">
-					<!-- 2번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e322f3375db4d89128">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-7.PNG"
-									alt="Cute Quirky Garden apt, NYC adjacent" /> <a
-									class="tile-link" href="detail-rooms.html"></a>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                          <use xlink:href="#heart-1"> </use>
-                                          </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">국립항공박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">서울시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="h-auto px-2">
-					<!-- 3번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e3a31e62979bf147c9">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-8.PNG"
-									alt="Modern Apt - Vibrant Neighborhood!" /> <a
-									class="tile-link" href="detail-rooms.html"></a>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                          <use xlink:href="#heart-1"> </use>
-                                          </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">대한민국역사박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">부산시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="h-auto px-2">
-					<!-- 4번째 -->
-					<div class="w-100 h-100 hover-animate"
-						data-marker-id="59c0c8e3503eb77d487e8082">
-						<div class="card h-100 border-0 shadow">
-							<div class="card-img-top overflow-hidden gradient-overlay">
-								<img class="img-full-main-jh" src="<%=path%>/resources/img/museum-6.PNG"
-									alt="Sunny Private Studio-Apartment" /> <a class="tile-link"
-									href="detail-rooms.html"></a>
-								<div class="card-img-overlay-bottom z-index-20"></div>
-								<div class="card-img-overlay-top text-end">
-									<a class="card-fav-icon position-relative z-index-40"
-										href="javascript: void();"> <svg
-											class="svg-icon text-white">
-                                          <use xlink:href="#heart-1"> </use>
-                                          </svg>
-									</a>
-								</div>
-							</div>
-							<div class="card-body d-flex align-items-center">
-								<div class="w-100">
-									<h6 class="card-title">
-										<a class="text-decoration-none text-dark h5"
-											href="detail-rooms.html">옛길 박물관</a>
-									</h6>
-									<div class="d-flex card-subtitle mb-3">
-										<p class="flex-grow-1 mb-0 text-muted text-sm">경북 문경시</p>
-										<p class="flex-shrink-1 mb-0 card-stars text-xs text-end">
-											<i class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-warning"></i><i
-												class="fa fa-star text-gray-300"> </i>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		<%}%>
 	</div>
+</div>
+	<!-- 박물관 사진 끝 -->
 
-	<nav aria-label="Page navigation example">
-		<ul
-			class="mb-4-jh pagination pagination-template d-flex justify-content-center">
-			<li class="page-item"><a class="page-link" href="#"> <i
-					class="fa fa-angle-left"></i></a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#"> <i
-					class="fa fa-angle-right"></i></a></li>
-		</ul>
-	</nav>
+<%-- 페이지부 시작 --%>
+<div id="pageBar">
+	<%-- 처음으로 가기	 --%>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getStartPage()%>');">&lt;&lt;</button>
+	<%-- 이전으로 가기	 --%>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getPrvePage()%>');">&lt;</button>
+
+	<!-- 출력하기 -->
+	<% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
+		<%if(i == pageInfo.getCurrentPage()){ %>
+			<button disabled><%=i%></button>
+		<%} else {%>
+			<button onclick="movePage('<%=path%>/museum?page=<%=i%>');"><%=i%></button>
+		<%} %>
+	<%} %>
+	
+	<%-- 다음으로 가기	 --%>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getNextPage()%>');">&gt;</button>
+	
+	<%-- 마지막으로 가기	 --%>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getEndPage()%>');">&gt;&gt;</button>
+</div>
+<%-- 페이지부 종료 --%>
+
 </section>
+
+<script type="text/javascript">
+function movePage(pageUrl){
+		
+		var name = document.getElementById("name");
+		var area = $("#area option:selected").val();
+		var sort = $("#sort option:selected").val(); 
+ 		
+		if(name.value != null && name.value.length > 0 ){
+			pageUrl = pageUrl + '&name='+ name.value;
+		}
+		if(area != null && area.length > 0 ){
+			pageUrl = pageUrl + '&area='+ area;
+		}
+		if(sort != null && sort.length > 0 ){
+			pageUrl = pageUrl + '&sort='+ sort;
+		}
+		
+//  	if(sort.value != null && sort.value.length > 0 ){
+// 			'&sort=' + target.options[target.selectedIndex].value;   
+//  	}
+		
+ 		alert(pageUrl);
+		location.href = encodeURI(pageUrl);
+}
+</script>
+
+
 <%@ include file="/views/common/footer.jsp"%>

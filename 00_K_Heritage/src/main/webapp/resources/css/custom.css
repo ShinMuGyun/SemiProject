@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 /* your styles go here */
 
 .text-orange {
@@ -344,6 +346,20 @@ cpdimg {
     color: orange;
 }
 
+.box1-jhj {
+    border: none;
+    width: 281px;
+    height: 306px;
+    margin: 10px;
+    margin-right: 10px;
+    margin-bottom: 80px;
+    background-color: #E7E6E6;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
 .mb-6-jh {
     margin-bottom: 4rem !important;
 }
@@ -352,6 +368,13 @@ cpdimg {
     margin-bottom: 3rem !important;
     margin-top: 7rem;
 }
+
+.btn-primary-jh {
+    color: #fff;
+    background-color: orange;
+    border-color: orange;
+}
+
 
 .mb-4-jh {
     margin-top: 4rem;
@@ -380,7 +403,7 @@ cpdimg {
 
 .border-1-jhj {
     border: 1px !important;
-    color: #f8f9fa;
+    color: #212121;
 }
 
 .img-full-main-jh {
@@ -444,6 +467,8 @@ cpdimg {
     margin-right: 10px;
 }
 
+
+
 .jhj-2 {
     width: 140px;
     margin-left: 10px;
@@ -456,6 +481,12 @@ cpdimg {
     margin-left: 10px;
     text-align: right;
     margin-right: 10px;
+}
+
+.jhj-4 {
+    margin-left: 40px;
+    text-align: right;
+    margin-right: 40px;
 }
 
 .container-jhj {
@@ -490,6 +521,11 @@ cpdimg {
     display: inline;
 }
 
+.btn-primary {
+    color: #fff;
+    background-color: orange;
+    border-color: orange;
+}
 
 /* ======================================= */
 

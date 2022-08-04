@@ -11,6 +11,7 @@
 	List<CultureDiVo> list2 = (List<CultureDiVo>)request.getAttribute("surroundlist");
 	CultureDiVo c = (CultureDiVo)request.getAttribute("culture");
 	int cnt = 1;
+	int sCnt = 1;
 %>
 
 <section class="py-5">
@@ -113,15 +114,17 @@
 								<h6 class="h6-bs tal">주변 문화재</h6>
 							</div>
 							<br>
-								<%if(list2 == null || list.size() == 1) {%>
-									<h3>주변 문화재가 없습니다.</h3>
+								<%if(list2 == null || list2.size() == 1) {%>
+									<div>
+										<h3>주변 문화재가 없습니다.</h3>
+									</div>
 								<%} %>
 							
 							<%for(int i = 1; i < list2.size(); i++) {%>
-								<%if(cnt == 4){ 
-									cnt = 1;
+								<%if(sCnt == 4){ 
+									sCnt = 1;
 									break;
-								} else {cnt++;}%>
+								} else {sCnt++;}%>
 								<div>
 									<img class="cpdnimg1"src="<%=list2.get(i).getImageUrl()%>">
 									<p class="mt-2 mb-2">
@@ -129,9 +132,8 @@
 									명 칭 : <%=list2.get(i).getCcbaMnm1()%><br>
 									시 대 : <%=list2.get(i).getCcceName()%><br>
 									</p>
-								</div>
-								
-								<%if(cnt == 1 || cnt == 2){ %>
+								</div>								
+								<%if(sCnt == 2 || sCnt == 3){ %>
 									<hr>
 								<%} %>
 							<%} %>
