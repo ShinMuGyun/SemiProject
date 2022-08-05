@@ -47,7 +47,7 @@ public class MainDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT ROWNUM, M.* "
-				+ "FROM (SELECT fcltyNm, areadr, weekdayOperOpenHhmm, "
+				+ "FROM (SELECT MuseumCd,fcltyNm, areadr, weekdayOperOpenHhmm, "
 				+ "weekdayOperColseHhmm, holidayOperOpenHhmm, holidayCloseOpenHhmm "
 				+ "FROM museum ORDER BY CNT DESC) M "
 				+ "WHERE ROWNUM <= 2";
@@ -59,6 +59,7 @@ public class MainDao {
 			
 			while (rs.next()) { // 결과가 있는 경우
 				MainVO m = new MainVO();
+				m.setMuseumCd(rs.getInt("MuseumCd"));
 				m.setFcltyNm(rs.getString("fcltyNm"));
 				m.setAreadr(rs.getString("areadr"));
 				m.setWeekdayOperOpenHhmm(rs.getString("weekdayOperOpenHhmm"));

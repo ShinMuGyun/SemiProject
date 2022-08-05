@@ -1,3 +1,4 @@
+<%@page import="Museum.Museum"%>
 <%@page import="culture.CultureImgVo"%>
 <%@page import="java.util.List"%>
 <%@page import="culture.CultureDiVo"%>
@@ -9,9 +10,11 @@
 <%
 	List<CultureImgVo> list = (List<CultureImgVo>)request.getAttribute("img");
 	List<CultureDiVo> list2 = (List<CultureDiVo>)request.getAttribute("surroundlist");
+	List<Museum> mlist = (List<Museum>)request.getAttribute("surroundmlist");
 	CultureDiVo c = (CultureDiVo)request.getAttribute("culture");
 	int cnt = 1;
 	int sCnt = 1;
+	int mCnt = 0;
 %>
 
 <section class="py-5">
@@ -114,44 +117,52 @@
 								<h6 class="h6-bs tal">주변 문화재</h6>
 							</div>
 							<br>
-								<%if(list2 == null || list2.size() == 1) {%>
-									<div>
-										<h3>주변 문화재가 없습니다.</h3>
-									</div>
-								<%} %>
-							
-							<%for(int i = 1; i < list2.size(); i++) {%>
-								<%if(sCnt == 4){ 
-									sCnt = 1;
-									break;
-								} else {sCnt++;}%>
+							<%if(list2 == null || list2.size() == 1) {%>
 								<div>
-									<img class="cpdnimg1"src="<%=list2.get(i).getImageUrl()%>">
-									<p class="mt-2 mb-2">
-									분 류 : <%=list2.get(i).getGcodeName()%> / <%=list2.get(i).getBcodeName()%><br>
-									명 칭 : <%=list2.get(i).getCcbaMnm1()%><br>
-									시 대 : <%=list2.get(i).getCcceName()%><br>
-									</p>
-								</div>								
-								<%if(sCnt == 2 || sCnt == 3){ %>
-									<hr>
+									<h3>주변 문화재가 없습니다.</h3>
+								</div>
+							<%}else{ %>
+								<%for(int i = 1; i < list2.size(); i++) {%>
+									<%if(sCnt == 4){ 
+										sCnt = 1;
+										break;
+									} else {sCnt++;}%>
+									<div>
+										<img class="cpdnimg1"src="<%=list2.get(i).getImageUrl()%>">
+										<p class="mt-2 mb-2">
+										분 류 : <%=list2.get(i).getGcodeName()%> / <%=list2.get(i).getBcodeName()%><br>
+										명 칭 : <%=list2.get(i).getCcbaMnm1()%><br>
+										시 대 : <%=list2.get(i).getCcceName()%><br>
+										</p>
+									</div>								
+									<%if(sCnt == 2 || sCnt == 3){ %>
+										<hr>
+									<%} %>
 								<%} %>
 							<%} %>
-							
 							<div class="mt-5">
 								<h6 class="h6-bs tal">주변 박물관</h6>
 							</div>
 
 							<div style="text-align: center;">
-								<a class="tag-item-bs">박물관</a> <a class="tag-item-bs">박물관</a> <a
-									class="tag-item-bs">박물관</a> <a class="tag-item-bs">박물관</a> <a
-									class="tag-item-bs">박물관</a>
+							<%if(mlist == null) {%>
+									<h3>주변 박물관이 없습니다.</h3>
+								<%}else{ %>
+									<%for(int i = 0; i < mlist.size(); i++) {%>	
+										<%if(mCnt == 4){ 
+											mCnt = 0;
+											break;
+										} else {mCnt++;}%>
+										<a class="tag-item-bs" href="<%=path%>/museuminfo?MuseumCd=<%=mlist.get(i).getMuseumCd()%>">
+											<%=mlist.get(i).getFcltyNm() %>
+										</a>
+									<%} %>
+								<%} %>
 							</div>
-
 						</div>
-
 					</div>
 				</div>
+				
 			</div>
 		</div>
 	</div>

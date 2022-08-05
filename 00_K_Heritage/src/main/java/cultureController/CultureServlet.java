@@ -73,9 +73,6 @@ public class CultureServlet extends HttpServlet{
 			}
 			
 			page = Integer.parseInt(req.getParameter("page"));
-			System.out.println();
-			System.out.println(page);
-			System.out.println();
 			
 			
 		} catch (Exception e) {}

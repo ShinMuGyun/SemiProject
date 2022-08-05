@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import common.JDBCTemplate;
 import common.PageInfo;
 
 public class MuseumDao {
@@ -336,15 +337,14 @@ public class MuseumDao {
 	}
 
 	// 박물관 조회수 올려주는 쿼리
-	public int updateCount(Connection conn, Museum museum) {
+	public int updateReadCount(Connection conn, Museum museum) {
 		PreparedStatement pstmt = null;
-		String query = "UPDATE museum SET cnt = ? WHERE MuseumCd = ? ";
+		String query = "UPDATE museum SET cnt = cnt + 1 WHERE MuseumCd = ? ";
 		int result = 0;
 
 		try {
 			pstmt = conn.prepareStatement(query);
-			pstmt.setInt(1, museum.getCnt() + 1);
-			pstmt.setInt(2, museum.getMuseumCd());
+			pstmt.setInt(1, museum.getMuseumCd());
 
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
@@ -355,40 +355,71 @@ public class MuseumDao {
 		return result;
 	}
 
-//	public static void main(String[] args) {
+	// 박물관 세부 정보 - 박물관 상세페이지
+		public Museum findMuseumByNo(Connection conn, int num) {
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			Museum museum = null;
+
+			String sql = "select * FROM Museum where MuseumCd = ?";
+
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					museum = new Museum();
+					museum.setMuseumCd(rs.getInt("MuseumCd"));
+					museum.setFcltyNm(rs.getString("fcltyNm"));
+					museum.setAreadr(rs.getString("Areadr"));
+					museum.setRdnmadr(rs.getString("rdnmadr"));
+					museum.setLatitude(rs.getString("latitude"));
+					museum.setLongitude(rs.getString("longitude"));
+					museum.setOperPhoneNumber(rs.getString("operPhoneNumber"));
+					museum.setOperInstitutionNm(rs.getString("operInstitutionNm"));
+					museum.setHomepageUrl(rs.getString("homepageUrl"));
+					museum.setFcltyInfo(rs.getString("fcltyInfo"));
+					museum.setWeekdayOperOpenHhmm(rs.getString("weekdayOperOpenHhmm"));
+					museum.setWeekdayOperColseHhmm(rs.getString("weekdayOperColseHhmm"));
+					museum.setHolidayOperOpenHhmm(rs.getString("holidayOperOpenHhmm"));
+					museum.setHolidayCloseOpenHhmm(rs.getString("holidayCloseOpenHhmm"));
+					museum.setRstdeInfo(rs.getString("rstdeInfo"));
+					museum.setAdultChrge(rs.getString("adultChrge"));
+					museum.setYngbgsChrge(rs.getString("yngbgsChrge"));
+					museum.setRstdeInfo(rs.getString("rstdeInfo"));
+					museum.setChildChrge(rs.getString("childChrge"));
+					museum.setEtcChrgeInfo(rs.getString("etcChrgeInfo"));
+					museum.setFcltyIntrcn(rs.getString("fcltyIntrcn"));
+					museum.setRstdeInfo(rs.getString("rstdeInfo"));
+					museum.setTrnsportInfo(rs.getString("trnsportInfo"));
+					museum.setPhoneNumber(rs.getString("phoneNumber"));
+					museum.setInstitutionNm(rs.getString("institutionNm"));
+					museum.setInstitutionNm(rs.getString("institutionNm"));
+					museum.setCnt(rs.getInt("cnt"));
+
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+				close(rs);
+			}
+			return museum;
+		}
+
+	public static void main(String[] args) {
 //		Connection conn = getConnection();
 //		MuseumDao dao = new MuseumDao();
 //
-//		// 박물관 전체 갯수
-//		int count = dao.getMuseumCount(conn);
-//		System.out.println("게시물 갯수 : " + count);
-//
-//		Map<String, String> searchMap = new HashMap<String, String>();
-//		PageInfo info = new PageInfo(3, 10, count, 8);
-//
-////		searchMap.put("name", "풀짚");
-//		searchMap.put("area", "수도권");
-//		searchMap.put("sort", "내림차순");
-//
-//		// 박물관 전체 리스트
-//		System.out.println("박물관 전체 리스트");
-//		List<Museum> list1 = dao.findAll(conn, info);
-//		for (Museum m : list1) {
-//			System.out.println(m.toString());
-//		}
-//
-//		// 동적쿼리 박물관 갯수
-//		count = dao.getMuseumCount(conn, searchMap);
-//		System.out.println("게시물 갯수 : " + count);
-//
-//		// 박물관 동적쿼리 리스트
-//		System.out.println("박물관 동적쿼리 리스트");
-//		List<Museum> list2 = dao.findAll(conn, info,searchMap);
-//		for (Museum m : list2) {
-//			System.out.println(m.toString());
-//		}
-
-		// 조회수 올리는 쿼리
-//		Museum museuminfo = dao.MuseumAll(conn, 1);
-//			System.out.println(info.toString());
+//		
+//		Museum m = dao.findMuseumByNo(conn, 1645);
+//		dao.updateReadCount(conn, m);
+//		System.out.println(m.toString());
+//		JDBCTemplate.commit(conn);
+//		System.out.println();
+//		m = dao.findMuseumByNo(conn, 1645);
+//		
+//		System.out.println(m.toString());
+	}	
 }

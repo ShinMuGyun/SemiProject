@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Museum.Museum;
 import culture.CultureDiVo;
 import culture.CultureImgVo;
 import culture.CultureService;
@@ -31,11 +32,13 @@ public class CultureDiServlet extends HttpServlet {
 		Double latitude = Double.parseDouble(culture.getLatitude());
 
 		if (longitude != 0 && latitude != 0) {
-
+			
 			List<CultureDiVo> surroundlist = service.surroundingList(longitude, latitude);
+			List<Museum> surroundmlist = service.surroundingmList(longitude, latitude);
 			req.setAttribute("culture", culture);
 			req.setAttribute("img", imagelist);
 			req.setAttribute("surroundlist", surroundlist);
+			req.setAttribute("surroundmlist", surroundmlist);
 		} else {
 			req.setAttribute("culture", culture);
 			req.setAttribute("img", imagelist);

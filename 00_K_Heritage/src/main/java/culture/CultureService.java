@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import Museum.Museum;
 import common.PageInfo;
 
 public class CultureService {
@@ -73,5 +74,12 @@ public class CultureService {
 		List<CultureDiVo> img = dao.surroundingList(conn, longitude, latitude);
 		close(conn);
 		return img;
+	}
+
+	public List<Museum> surroundingmList(Double longitude, Double latitude) {
+		Connection conn = getConnection();
+		List<Museum> mlist = dao.surroundingmList(conn, longitude, latitude);
+		close(conn);
+		return mlist;
 	}
 }

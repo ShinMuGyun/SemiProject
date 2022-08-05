@@ -60,7 +60,23 @@ public class MuseumService {
 		Museum museum = dao.MuseumAll(conn, num);
 
 		if (hasRead == true && museum != null) {
-			int result = dao.updateCount(conn, museum);
+			int result = dao.updateReadCount(conn, museum);
+			if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+		}
+		close(conn);
+		return museum;
+	}
+
+	public Museum findMuseumByNo(int museumNo, boolean hasRead) {
+		Connection conn = getConnection();
+		Museum museum = dao.findMuseumByNo(conn, museumNo);
+
+		if (hasRead == true && museum != null) {
+			int result = dao.updateReadCount(conn, museum);
 			if (result > 0) {
 				commit(conn);
 			} else {

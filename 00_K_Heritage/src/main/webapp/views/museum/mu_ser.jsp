@@ -136,7 +136,7 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
                         <img class="img-full-main-jh" src="<%=path%>/resources/img/museum-<%=cnt++ %>.PNG" alt="" />
                        <%if(cnt == 9) { cnt = 1;%>
 								<%} %>
-                        <a class="tile-link" href="mu_det.html"></a>
+                        <a class="tile-link" href="<%=path%>/museuminfo?MuseumCd=<%=m.getMuseumCd()%>"></a>
                         <div class="card-img-overlay-bottom z-index-40"></div>
                         <div class="card-img-overlay-top text-end">
                             <a class="card-fav-icon position-relative z-index-40" href="javascript: void();"> <svg class="svg-icon text-white">
@@ -149,7 +149,9 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
                         <div class="w-100">
                             <h6 class="card-title">
 										<a class="text-decoration-none text-dark h5"
-											href="<%=path%>/views/museum/mu_det.jsp"><%=m.getFcltyNm()%></a>
+											href="<%=path%>/museuminfo?MuseumCd=<%=m.getMuseumCd()%>">
+											<%=m.getFcltyNm()%>
+										</a>
                             </h6>
                             
                           	<div class="d-flex card-subtitle mb-3">
@@ -225,11 +227,7 @@ function movePage(pageUrl){
 			pageUrl = pageUrl + '&sort='+ sort;
 		}
 		
-//  	if(sort.value != null && sort.value.length > 0 ){
-// 			'&sort=' + target.options[target.selectedIndex].value;   
-//  	}
-		
- 		alert(pageUrl);
+//  		alert(pageUrl);
 		location.href = encodeURI(pageUrl);
 }
 </script>

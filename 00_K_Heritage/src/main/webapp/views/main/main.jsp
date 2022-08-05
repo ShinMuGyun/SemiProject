@@ -5,7 +5,7 @@
 <%@ include file="/views/common/header.jsp"%>
 
 <%
-int cnt = 10;
+int cnt = 9;
 List<MainVO> todaylist = (List<MainVO>)request.getAttribute("todaylist");
 List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 %>
@@ -39,7 +39,7 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 		<div class="row mb-5">
 			<div class="col-md-8">
 				<p class="text-orange subtitle">다양한 문화재를 확인하세요</p>
-				<h2>오늘의 문화재</h2>
+				<h2>문화재</h2>
 			</div>
 			<div
 				class="col-md-4 d-lg-flex align-items-center justify-content-end">
@@ -157,15 +157,17 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 			<% for(MainVO m : poplist) { %>
 			<div class="col-lg-4 col-sm-6 mb-4 hover-animate">
 				<div class="card shadow border-0 h-100">
-					<a href="<%=path%>/views/museum/mu_det.jsp"><img class="img-fluid card-img-top"
-						src="<%=path%>/resources/img/photo/<%=cnt--%>.jpg"
-						alt="..." /></a>
+						<a href="<%=path%>/museuminfo?MuseumCd=<%=m.getMuseumCd()%>">
+							<img class="img-fluid card-img-top"	src="<%=path%>/resources/img/photo/<%=cnt++%>.jpg" alt="..." />
+						</a>
 					<div class="card-body">
-						<h5 class="my-2"><a class="text-dark" href="<%=path%>/views/museum/mu_det.jsp"><%=m.getFcltyNm() %></a></h5>
+						<h5 class="my-2">
+							<a class="text-dark" href="<%=path%>/museuminfo?MuseumCd=<%=m.getMuseumCd()%>"><%=m.getFcltyNm() %></a>
+						</h5>
 						<p class="text-gray-500 text-sm my-3"><i class="far fa-map me-2"></i><%=m.getAreadr() %></p>
 						<p class="my-2 text-muted text-sm">운영시간(평일) : <%=m.getWeekdayOperOpenHhmm() %> ~ <%=m.getWeekdayOperColseHhmm() %> </p>
 						<p class="my-2 text-muted text-sm">운영시간(주말) : <%=m.getHolidayOperOpenHhmm() %> ~ <%=m.getHolidayCloseOpenHhmm() %></p>
-						<a class="text-orange ps-0 btn" href="<%=path%>/views/museum/mu_det.jsp">더 보기<i
+						<a class="text-orange ps-0 btn" href="<%=path%>/museuminfo?MuseumCd=<%=m.getMuseumCd()%>">더 보기<i
 							class="fa fa-long-arrow-alt-right ms-2"></i></a>
 					</div>
 				</div>

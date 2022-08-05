@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import Museum.Museum;
 import common.JDBCTemplate;
 import common.PageInfo;
 
@@ -421,9 +422,51 @@ public class CultureDIDao {
 			close(rs);
 			close(pstmt);
 		}
-		System.out.println(list.size());
 		return list;
 	}
+	
+	public List<Museum> surroundingmList(Connection conn, double longitude, double latitude){
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Museum> list = new ArrayList<Museum>();
+		
+		String sql = "select *  from museum "
+					+ "where longitude between ? and ?"
+					+ "AND latitude between ? and ?"
+					+ "order by longitude desc";
+		int cnt = 1;
+		
+//		System.out.println(longitude);
+//		System.out.println(latitude);
+		
+		Double startlongitude = Math.floor((longitude - 0.01)*100)/100.0;
+		Double startlatitude = Math.floor((latitude - 0.01)*100)/100.0;
+		
+//		System.out.println(startlongitude);
+//		System.out.println(startlatitude);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDouble(cnt++, startlongitude);
+			pstmt.setDouble(cnt++, longitude);
+			pstmt.setDouble(cnt++, startlatitude);
+			pstmt.setDouble(cnt++, latitude);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Museum m = new Museum();
+				m.setFcltyNm(rs.getString("fcltyNm"));
+				m.setMuseumCd(rs.getInt("MuseumCd"));
+				list.add(m);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		return list;
+	}
+	
 	
 	
 	public static void main(String[] args) {

@@ -1,6 +1,14 @@
+<%@page import="Museum.Museum"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
 <%@ include file="/views/common/header.jsp"%>
+
+<%
+Museum m = (Museum)request.getAttribute("museum");
+%>
+
 <section>
 	<!-- Slider main container-->
 	<div class="swiper-container detail-slider slider-gallery">
@@ -11,40 +19,28 @@
 			<!-- 사진수정 -->
 
 			<div class="swiper-slide">
-				<a href="img/photo/kbs2.jpg" data-toggle="gallery-top" title="kbs2"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs2.jpg"
-					alt="kbs2"></a>
+				<a href="<%=path%>/resources/img/photo/9.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/9.jpg" alt="국립중앙박물관"></a>
 			</div>
 			<div class="swiper-slide">
-				<a href="img/photo/kbs3.jpg" data-toggle="gallery-top" title="kbs3"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs3.jpg"
-					alt="kbs3"></a>
+				<a href="<%=path%>/resources/img/photo/mu2.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/mu2.jpg" alt="국립중앙박물관"></a>
 			</div>
 			<div class="swiper-slide">
-				<a href="img/photo/kbs1.jpg" data-toggle="gallery-top" title="kbs1"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs1.jpg"
-					alt="kbs1"></a>
+				<a href="<%=path%>/resources/img/photo/mu3.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/mu3.jpg" alt="국립중앙박물관"></a>
 			</div>
 			<div class="swiper-slide">
-				<a href="img/photo/kbs2.jpg" data-toggle="gallery-top" title="kbs2"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs2.jpg"
-					alt="kbs2"></a>
+				<a href="<%=path%>/resources/img/photo/9.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/9.jpg" alt="국립중앙박물관"></a>
 			</div>
 			<div class="swiper-slide">
-				<a href="img/photo/kbs3.jpg" data-toggle="gallery-top" title="kbs3"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs3.jpg"
-					alt="kbs3"></a>
+				<a href="<%=path%>/resources/img/photo/mu2.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/mu2.jpg" alt="국립중앙박물관"></a>
 			</div>
 			<div class="swiper-slide">
-				<a href="img/photo/kbs1.jpg" data-toggle="gallery-top" title="kbs1"><img
-					class="img-fluid"
-					src="<%=path%>/resources/img/photo/kbs1.jpg"
-					alt="kbs1"></a>
+				<a href="<%=path%>/resources/img/photo/mu3.jpg" data-toggle="gallery-top" title="국립중앙박물관">
+				<img class="img-fluid"src="<%=path%>/resources/img/photo/mu3.jpg" alt="국립중앙박물관"></a>
 			</div>
 		</div>
 		<div class="swiper-pagination swiper-pagination-white"></div>
@@ -57,25 +53,24 @@
 	<div class="row">
 		<div class="col-lg-8">
 
-			<!-- /////////////////////여기부터 수정///////////////////////////// -->
 
-			<div class="text-block">
-				<h1 class="hero-heading mb-3">국립중앙박물관</h1>
+		<div class="text-block">
+				<h1 class="hero-heading mb-3"><%=m.getFcltyNm()%></h1>
 				<img class="museum"
-					src="<%=path%>/resources/img/photo/muimg.jpg">
+					src="<%=path%>/resources/img/photo/mu1.jpg">
 			</div>
-
-
 
 			<div class="text-block">
 				<div class="row">
 					<div class="col-sm">
 						<h6>관람시간</h6>
+						
 						<p class=" text-sm mb-0"></p>
 						<p class="text-muted">
-							월, 화, 목, 금, 일요일: 10:00 ~ 18:00 (입장 마감: 17:30)<br>수, 토요일:
-							10:00 ~ 21:00 (입장 마감: 20:30)<br>옥외 전시장(정원)은 오전 7시부터 관람하실 수
-							있습니다.
+						
+						평일 : <%=m.getWeekdayOperOpenHhmm() %> ~ <%=m.getWeekdayOperColseHhmm() %>
+						<br>
+						공휴일 : <%=m.getHolidayOperOpenHhmm() %> ~ <%=m.getHolidayCloseOpenHhmm() %>
 						</p>
 					</div>
 				</div>
@@ -87,9 +82,7 @@
 						<h6>휴관일 및 휴실일</h6>
 						<p class=" text-sm mb-0"></p>
 						<p class="text-muted">
-							휴관일: 1월1일, 설날(2.1.), 추석(9.10.)<br>상설전시실 정기휴실일: 매년 4월, 11월(첫째
-							월요일)<br>2022년 휴실일: 4.4.(월), 11.7.(월)<br>기획전시실(특별전시 종료시
-							휴실), 야외전시장은 정상 개관
+							<%=m.getRstdeInfo() %>
 						</p>
 					</div>
 				</div>
@@ -102,25 +95,12 @@
 
 						<br>
 
-						<h6>
-							<u>무료</u>
-						</h6>
 						<p class="text-muted">
-							상설전시관, 어린이박물관, 무료 특별전시 해당<br> 어린이박물관 관람권 받는 곳: 어린이박물관 앞
-							안내데스크<br> (어린이박물관 예약 관람객의 경우 예약증으로 입장 가능합니다.)<br> 관람권
-							발급시간: 관람 종료 30분 전까지
-
+							<%=m.getEtcChrgeInfo() %>
 						</p>
 
 						<br>
 
-						<h6>
-							<u>유료</u>
-						</h6>
-						<p class="text-muted">
-							유료 특별전시 해당<br> 관람권 구입하는 곳: 기획전시실 앞 매표소<br> 관람권 판매시간: 관람
-							종료 30분 전까지<br>
-						</p>
 					</div>
 				</div>
 			</div>
