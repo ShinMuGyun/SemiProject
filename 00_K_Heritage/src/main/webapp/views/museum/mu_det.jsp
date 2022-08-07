@@ -5,6 +5,12 @@
 	
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
+
 <%
 Museum m = (Museum)request.getAttribute("museum");
 %>
@@ -56,7 +62,7 @@ Museum m = (Museum)request.getAttribute("museum");
 
 		<div class="text-block">
 				<h1 class="hero-heading mb-3"><%=m.getFcltyNm()%></h1>
-				<img class="museum"
+				<img class="museumimg border-radius-bs"
 					src="<%=path%>/resources/img/photo/mu1.jpg">
 			</div>
 

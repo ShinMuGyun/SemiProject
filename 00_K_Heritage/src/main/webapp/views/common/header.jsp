@@ -76,31 +76,31 @@
 					<i class="fa fa-bars"></i>
 				</button>
 
-				<div class="collapse navbar-collapse" id="navbarCollapse">
+				<div class="collapse navbar-collapse" id="navbarCollapse" >
 					<ul class="navbar-nav ms-auto">
 						<li class="nav-item dropdown"><a class="nav-link active"
 							id="homeDropdownMenuLink" href="<%=path%>/index.do" aria-haspopup="true"
-							aria-expanded="false"> <i class="fa fa-house-damage"></i>
+							aria-expanded="false"> <i class="fa fa-home" style="font-size: 2.0rem"></i>
 						</a></li>
 						<%if(loginMember == null){ %>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/login.do">로그인</a></li>
 						<%} else { %>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/logOut.do">로그아웃</a></li>
 						<%} %>
 						
 						<%if(loginMember != null){ %>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/mypage.do">마이페이지</a></li>
 							<%} %>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/culList">문화재검색</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/museum">박물관검색</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">퀴즈</a></li>
-						<li class="nav-item"><a class="nav-link"
+						<li class="nav-item"><a class="nav-link" href="#" style="font-size: 1.5rem" >게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="#" style="font-size: 1.5rem" >퀴즈</a></li>
+						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/views/dokam/dokam.jsp">나의 도감</a></li>
 					</ul>
 				</div>

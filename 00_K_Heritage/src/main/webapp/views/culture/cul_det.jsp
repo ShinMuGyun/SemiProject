@@ -7,6 +7,12 @@
 
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
+
 <%
 	List<CultureImgVo> list = (List<CultureImgVo>)request.getAttribute("img");
 	List<CultureDiVo> list2 = (List<CultureDiVo>)request.getAttribute("surroundlist");
@@ -31,7 +37,7 @@
 				break;
 			}
 		%>
-			<img class="shimg" src=<%=img.getImageUrl() %>>
+			<img class="shimg border-radius-bs" src=<%=img.getImageUrl() %>>
 		<%} %>
 		</div>
 
@@ -85,7 +91,7 @@
 										%>
 											<div class="col-lg-4 col-6 px-1 mb-2">
 												<a href="<%=img.getImageUrl()%>">
-													<img class="img-fluid" src="<%=img.getImageUrl()%>" alt="<%=img.getCcimDesc()%>">
+													<img class="img-fluid border-radius-bs" src="<%=img.getImageUrl()%>" alt="<%=img.getCcimDesc()%>">
 												</a>
 											</div>
 										<%} %>
@@ -108,7 +114,7 @@
 						<div class="cpd">
 
 							<div class="tac">
-								<img class="cpdimg"
+								<img class="cpdimg border-radius-bs"
 									src="<%=path%>/resources/img/photo/cpdimg.jpg"
 									style="width: 98%;">
 							</div>
@@ -128,7 +134,7 @@
 										break;
 									} else {sCnt++;}%>
 									<div>
-										<img class="cpdnimg1"src="<%=list2.get(i).getImageUrl()%>">
+										<img class="cpdnimg1 border-radius-bs"src="<%=list2.get(i).getImageUrl()%>">
 										<p class="mt-2 mb-2">
 										분 류 : <%=list2.get(i).getGcodeName()%> / <%=list2.get(i).getBcodeName()%><br>
 										명 칭 : <%=list2.get(i).getCcbaMnm1()%><br>
@@ -153,7 +159,7 @@
 											mCnt = 0;
 											break;
 										} else {mCnt++;}%>
-										<a class="tag-item-bs" href="<%=path%>/museuminfo?MuseumCd=<%=mlist.get(i).getMuseumCd()%>">
+										<a class="tag-item" href="<%=path%>/museuminfo?MuseumCd=<%=mlist.get(i).getMuseumCd()%>">
 											<%=mlist.get(i).getFcltyNm() %>
 										</a>
 									<%} %>

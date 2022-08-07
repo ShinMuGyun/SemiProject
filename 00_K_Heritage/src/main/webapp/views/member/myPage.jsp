@@ -5,6 +5,12 @@
 
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
+
 <section class="py-5">
 	<div class="container">
 		<!-- Breadcrumbs -->
@@ -111,8 +117,8 @@
 										id="email" value="<%=loginMember.getUEmail()%>">
 								</div>
 								<div style="text-align: center;">
-									<button class="btn btn-outline-primary-ms mb-4" type="submit">회원정보	저장하기</button>
-									 <input class="btn btn-outline-primary-ms mb-4" type="button" id="deleteMember" value="회원 탈퇴"/>
+									<button class="btn btn-outline-primary-bs1 mb-4" type="submit">회원정보 저장하기</button>
+									<button class="btn btn-outline-primary-bs2 mb-4" type="submit">회원탈퇴</button>
 									<hr>
 								</div>
 							</div>
@@ -126,7 +132,7 @@
 					<div class="card-header bg-primary-light1 py-4 border-0">
 						<div class="d-flex align-items-center">
 							<div>
-								<h4 class="h6 subtitle text-smm text-primarym">나의 박물관 조회</h4>
+								<h4 class="h6 subtitle text-smm text-primarym textcenter">나의 박물관 조회</h4>
 
 								<!-- <i class="fa fa-thin fa-landmark"></i> -->
 
@@ -139,10 +145,7 @@
 					</div>
 					<div class="card-body p-4">
 						<div style="text-align: center;">
-							<button class="btn btn-outline-primary-mi mb-4" type="submit">박물관 예약내역&nbsp;></button>
-						</div>
-						<div style="text-align: center;">
-							<button class="btn btn-outline-primary-mi2 mb-4" type="submit">박물관 즐겨찾기&nbsp;></button>
+							<button class="btn btn-outline-primary-mi mb-4" type="button" onClick="location.href='<%=path%>/mypageFaAndRe.do'">박물관 즐겨찾기 & 예약내역&nbsp;></button>
 						</div>
 					</div>
 				</div>

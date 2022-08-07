@@ -38,7 +38,7 @@
 			<!-- Breadcrumbs -->
 			<div class="text-block">
 				<h1 class="hero-heading mb-3">국립중앙박물관</h1>
-				<img class="museum"
+				<img class="museumimg border-radius-bs"
 					src="<%=path%>/resources/img/photo/muimg.jpg">
 			</div>
 

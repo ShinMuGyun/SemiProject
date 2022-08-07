@@ -6,6 +6,12 @@
 
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
+
 <%
 	int cnt = 1;
 	
@@ -60,7 +66,9 @@
 	
 
 	<fieldset class="filter-yj">
-		<br> <b>지정 종목</b> 
+	
+		<div class="textleft mt-4 mb-4 ms-4">
+		<b>지정 종목</b>&emsp;
 		<label><input type="radio" id="value2" name="value2" value="국보" <%=value2.equals("국보") ? "checked":""%>> 
 		국보&nbsp;&nbsp;</label>
 		<label><input type="radio" id="value2" name="value2" value="보물" <%=value2.equals("보물") ? "checked":""%>> 
@@ -69,13 +77,12 @@
 		사적&nbsp;&nbsp;</label>
 		<label><input type="radio" id="value2" name="value2" value="천연기념물" <%=value2.equals("천연기념물") ? "checked":""%>> 
 		천연기념물&nbsp;&nbsp;</label>
-		
-		<br> <br>
+		</div>
 		
 		<hr class="hr-yj">
 		
-		<br> <b>시대별</b> 
-		
+		<div class="textleft mt-4 mb-4 ms-4"> 
+		<b>시대별</b>&emsp;&emsp; 		
 		<label><input type="radio" id="value3" name="value3" value="선사"  <%=value3.equals("선사") ? "checked":""%>>
 		선사시대 	&nbsp;&nbsp;</label> 
 		<label><input type="radio" id="value3" name="value3" value="원삼국" <%=value3.equals("원삼국") ? "checked":""%>>
@@ -85,26 +92,23 @@
 		<label><input type="radio" id="value3" name="value3" value="남북국" <%=value3.equals("남북국") ? "checked":""%>>
 		남북국시대&nbsp;&nbsp;</label>
 		<label><input type="radio" id="value3" name="value3" value="고려" <%=value3.equals("고려") ? "checked":""%>>
-		고려시대   &nbsp;&nbsp;</label> 
+		고려시대&nbsp;&nbsp;</label>
+		<br>
+		&emsp;&emsp;&emsp;&emsp;&emsp;		 
 		<label><input type="radio" id="value3" name="value3" value="조선" <%=value3.equals("조선") ? "checked":""%>>
-		조선시대   &nbsp;&nbsp;</label> 
-		                                                                               
-		<br> 
-		
+		조선시대   &nbsp;&nbsp;</label>		
 		<label><input type="radio" id="value3" name="value3" value="대한제국" <%=value3.equals("대한제국") ? "checked":""%>>
 		대한제국시대 &nbsp;&nbsp;</label> 
 		<label><input type="radio" id="value3" name="value3" value="신라" <%=value3.equals("신라") ? "checked":""%>>	
 		신라시대    &nbsp;&nbsp;</label>
 		<label><input type="radio" id="value3" name="value3" value="시대미상" <%=value3.equals("시대미상") ? "checked":""%>>	
-		시대미상    &nbsp;&nbsp;</label>
-		
-		<br>
-		<br>
+		시대미상    &nbsp;&nbsp;</label>		
+		</div>
 		
 		<hr class="hr-yj">
 		
-		<br> <b>지역별</b> 
-		
+		<div class="textleft mt-4 mb-4 ms-4">
+		<b>지역별</b>&emsp;&emsp; 		
 		<!-- 여러분은 여기분 도를 권으로 수정하면 잘 될거에요! -->
 		<label><input type="radio" id="value4" name="value4" value="수도권" <%=value4.equals("수도권") ? "checked":""%>>
 		수도권&nbsp;&nbsp;</label>  
@@ -118,9 +122,9 @@
 		경상권&nbsp;&nbsp;</label> 
 		<label><input type="radio" id="value4" name="value4" value="제주도" <%=value4.equals("제주도") ? "checked":""%>>
 		제주권&nbsp;&nbsp;</label> 
-                                                                            
-	</fieldset>                                                             
-                                                                            
+        </div>                                                                    
+	</fieldset>
+                                                                                                                                      
 	<div class="btn-yj">                                                    
 		<button type="submit" id="submit-btn-yj">적용</button>
 		<button type="reset" id="reset-btn-yj">초기화</button>
@@ -131,6 +135,7 @@
 <br>
 
 <!-- 사진 부분 -->
+
 <div class="box-parent-yj" style="text-align: center;">
 <%for(CultureDiVo c : list){%>
 
@@ -156,13 +161,8 @@
 <%} %>
 </div>
 
-<br>
-<br>
-<br>
-<br>
-
 <%-- 페이지부 시작 --%>
-<div id="pageBar">
+<div class="mt-5 mb-6" id="pageBar">
 	<%-- 처음으로 가기	 --%>
 	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getStartPage()%>');">&lt;&lt;</button>
 	<%-- 이전으로 가기	 --%>

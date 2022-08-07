@@ -4,6 +4,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
+
 <%
 int cnt = 9;
 List<MainVO> todaylist = (List<MainVO>)request.getAttribute("todaylist");
@@ -34,9 +40,9 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 	</div>
 </section>
 
-<section class="py-4">
+<section class="py-4-bs1">
 	<div class="container">
-		<div class="row mb-5">
+		<div class="row">
 			<div class="col-md-8">
 				<p class="text-orange subtitle">다양한 문화재를 확인하세요</p>
 				<h2>문화재</h2>
@@ -72,11 +78,11 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 	</div>
 </section>
 
-<section class="py-4">
+<section class="py-4-bs2">
 	<div class="container">
-		<div class="pb-lg-4">
+		<div class="row">
 			<p class="subtitle text-orange">오늘의 소식을 확인하세요</p>
-			<h2 class="mb-5">공지 사항</h2>
+			<h2 class="mb-3">공지 사항</h2>
 		</div>
 		<div class="row">
 			<div class="col-sm-6 col-lg-3 mb-3 mb-lg-0">
@@ -131,7 +137,7 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 </section>
 
 <!-- Divider Section-->
-<section class="py-4 position-relative dark-overlay">
+<section class="py-4-bs3 position-relative dark-overlay">
 	<img class="bg-image"
 		src="<%=path%>/resources/img/photo/6.jpg" alt="">
 	<div class="container">
@@ -146,8 +152,8 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 </section>
 
 <%-- 인기박물관 소개 배너 --%>
-<section class="py-4 bg-gray-100">
-	<div class="container"><div class="row mb-5"><div class="col-md-8">
+<section class="py-4-bs1 bg-gray-100">
+	<div class="container"><div class="row mb-4"><div class="col-md-8">
 				<h2>박물관</h2><p class="subtitle text-orange">7월의 인기 박물관</p></div>
 			<div class="col-md-4 d-md-flex align-items-center justify-content-end">
 				<a class="text-muted text-sm" href="<%=path%>/museum"> 더 보기
@@ -199,7 +205,7 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 </section>
 
 <%-- footer 상단 이미지 --%>
-<section>
+<section class="">
 	<div class="container-fluid px-0">
 		<div class="swiper-container instagram-slider">
 			<div class="swiper-wrapper">
@@ -216,4 +222,3 @@ List<MainVO> poplist = (List<MainVO>)request.getAttribute("poplist");
 	</div>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
-
