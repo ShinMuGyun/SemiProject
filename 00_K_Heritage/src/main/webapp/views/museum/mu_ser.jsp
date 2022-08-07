@@ -54,10 +54,10 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 	<!-- 검색창 시작 -->
 	<div class="container center style=">
 		<form action="<%=path%>/museum" method="GET">
-			<div class="col-lg-10 d-flex align-items-center form-group mb-3-jh">
+			<div class="d-flex align-items-center form-group mb-3-jh">
 
 				<label class="jhj-1">박물관 명칭 검색</label>
-				<div class="input-label-absolute input-label-absolute-right w-10">
+				<div class="input-label-absolute input-label-absolute-right ">
 					<input class="form-control-jhj border-1-jhj shadow-0" 
 					id="name" name="name" value="<%=name%>" type="text" class="input_text" placeholder="이름">
 				</div>
@@ -65,7 +65,7 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 
 				<label class="jhj-2">지역별 검색</label> 
 				
-				<select class="selectpicker" title="--------선택--------" data-style="btn-form-control" name="area" id="area">
+				<select class="selectpicker" title="-----------선택-----------" data-style="btn-form-control" name="area" id="area">
 					<%if(area.equals("수도권")) {%>
 						<option value="수도권" selected=selected>수도권</option>
 					<%} else {%>
@@ -115,9 +115,8 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 				</select>
 
 
-				<div class="col-lg-2 d-grid form-group mb-1 jhj-4">
-					<button class="btn btn-primary h-100 w-50" type="submit">검색
-					</button>
+				<div class="col-lg-2 d-grid">
+					<button class="btn btn-primary h-100 w-50 btn-primary-jh jhj-5" type="submit">검색</button>
 				</div>
 			</div>
 		</form>
