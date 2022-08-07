@@ -48,9 +48,8 @@
 
 <style>
 /*페이지바*/
-	div#pageBar{margin-top:10px; text-align:center;}
+	div#pageBar{margin-top:10px; text-align:center; color: #f8f9fa;}
 </style>
-
 
 
 <!-- 필터박스 부분 -->
@@ -162,26 +161,30 @@
 </div>
 
 <%-- 페이지부 시작 --%>
-<div class="mt-5 mb-6" id="pageBar">
+<div id="pageBar">
 	<%-- 처음으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getStartPage()%>');">&lt;&lt;</button>
+	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getStartPage()%>');" style="border: none; background-color: #fff">&lt;&lt;</button>
 	<%-- 이전으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getPrvePage()%>');">&lt;</button>
+	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getPrvePage()%>');" style="border: none; background-color: #fff">&lt;</button>
 
 	<!-- 10개 목록 출력하기 -->
 	<% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
 		<%if(i == pageInfo.getCurrentPage()){ %>
-			<button disabled><%=i%></button>
+			<button disabled style="border: none; background-color: #fff"><%=i%></button>
 		<%} else {%>
-			<button onclick="movePage('<%=path%>/culList?page=<%=i%>');"><%=i%></button>
+			<button onclick="movePage('<%=path%>/culList?page=<%=i%>');" style="border: none; background-color: #fff"><%=i%></button>
 		<%} %>
 	<%} %>
 	
 	<%-- 다음으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getNextPage()%>');">&gt;</button>
+	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getNextPage()%>');" style="border: none; background-color: #fff">&gt;</button>
 	
 	<%-- 마지막으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getEndPage()%>');">&gt;&gt;</button>
+	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getEndPage()%>');" style="border: none; background-color: #fff">&gt;&gt;</button>
+<br>
+<br>
+<br>
+<br>
 </div>
 <%-- 페이지부 종료 --%>
 

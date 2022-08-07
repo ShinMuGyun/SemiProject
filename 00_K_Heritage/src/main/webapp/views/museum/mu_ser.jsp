@@ -36,9 +36,8 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 
 <style>
 /*페이지바*/
-	div#pageBar{margin-top:10px; text-align:center; }
+	div#pageBar{margin-top:10px; text-align:center; color: #f8f9fa; background-color:  #f8f9fa;}
 </style>
-
 
 <section class="py-6 bg-gray-100 font1">
 	<!-- 제목 타이틀  -->
@@ -187,24 +186,24 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 <%-- 페이지부 시작 --%>
 <div id="pageBar">
 	<%-- 처음으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getStartPage()%>');">&lt;&lt;</button>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getStartPage()%>');" style="border: none; background-color: #f8f9fa">&lt;&lt;</button>
 	<%-- 이전으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getPrvePage()%>');">&lt;</button>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getPrvePage()%>');" style="border: none; background-color: #f8f9fa">&lt;</button>
 
 	<!-- 출력하기 -->
 	<% for(int i = pageInfo.getStartPage(); i <= pageInfo.getEndPage(); i++){ %>
 		<%if(i == pageInfo.getCurrentPage()){ %>
-			<button disabled><%=i%></button>
+			<button disabled style="border: none"><%=i%></button>
 		<%} else {%>
-			<button onclick="movePage('<%=path%>/museum?page=<%=i%>');"><%=i%></button>
+			<button onclick="movePage('<%=path%>/museum?page=<%=i%>');" style="border: none; background-color: #f8f9fa"><%=i%></button>
 		<%} %>
 	<%} %>
 	
 	<%-- 다음으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getNextPage()%>');">&gt;</button>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getNextPage()%>');" style="border: none; background-color: #f8f9fa">&gt;</button>
 	
 	<%-- 마지막으로 가기	 --%>
-	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getEndPage()%>');">&gt;&gt;</button>
+	<button onclick="movePage('<%=path%>/museum?page=<%=pageInfo.getEndPage()%>');" style="border: none; background-color: #f8f9fa">&gt;&gt;</button>
 </div>
 <%-- 페이지부 종료 --%>
 
