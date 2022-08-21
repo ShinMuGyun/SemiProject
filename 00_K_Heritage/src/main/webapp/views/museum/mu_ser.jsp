@@ -6,6 +6,11 @@
 
 <%@ include file="/views/common/header.jsp"%>
 
+<!-- 이거 추가함 -->
+<head>
+   <link href="${pageContext.request.contextPath}/resources/css/home.css" rel="stylesheet" type="text/css">
+</head> 
+<!--  -->
 
 <%
 List<Museum> list = (List<Museum>) request.getAttribute("list");
@@ -65,7 +70,7 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 
 				<label class="jhj-2">지역별 검색</label> 
 				
-				<select class="selectpicker" title="-----------선택-----------" data-style="btn-form-control" name="area" id="area">
+				<select class="selectpicker" title="선택" data-style="btn-form-control" name="area" id="area">
 					<%if(area.equals("수도권")) {%>
 						<option value="수도권" selected=selected>수도권</option>
 					<%} else {%>
@@ -100,7 +105,7 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 				
 				<label class="jhj-3">정렬</label> 
 				
-				<select class="selectpicker" title="--------선택--------" data-style="btn-form-control" name="sort" id="sort">
+				<select class="selectpicker" title="선택" data-style="btn-form-control" name="sort" id="sort">
 					<%if(sort.equals("오름차순")) {%>
 						<option value="오름차순" selected="selected">오름차순</option>
 					<%} else {%>
@@ -116,7 +121,7 @@ if (sortParamValue != null && sortParamValue.length() > 0) {
 
 
 				<div class="col-lg-2 d-grid">
-					<button class="btn btn-primary h-100 w-50 btn-primary-jh jhj-5" type="submit">검색</button>
+					<button class="btn btn-primary h-100 w-50 btn-primary-jh jhj-6 ms-4" type="submit">검색</button>
 				</div>
 			</div>
 		</form>

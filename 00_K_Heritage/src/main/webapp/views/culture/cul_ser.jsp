@@ -151,17 +151,20 @@
 			<img src="<%=c.getImageUrl() %>" alt="" class="img01-yj"></a>
 		<%} %>
 		
-		<br><%=c.getCcmaName() %><br>
-		<br>
+		<div class="mt-2">
+		<%=c.getCcmaName() %>
+		</div>
+		<div class="mt-0">
 		<a href="<%=path%>/cul_di?CcbaMnm1=<%=c.getCcbaMnm1()%>
 		&CcbaAsno=<%=c.getCcbaAsno()%>&CcbaKdcd=<%=c.getCcbaKdcd()%>&CcbaCtcd=<%=c.getCcbaCtcd()%>">
 		<b class="text-black"><%=c.getCcbaMnm1() %></b></a>
+		</div>
 	</div>
 <%} %>
 </div>
 
 <%-- 페이지부 시작 --%>
-<div id="pageBar">
+<div class="mt-5 mb-4" id="pageBar">
 	<%-- 처음으로 가기	 --%>
 	<button onclick="movePage('<%=path%>/culList?page=<%=pageInfo.getStartPage()%>');" style="border: none; background-color: #fff">&lt;&lt;</button>
 	<%-- 이전으로 가기	 --%>

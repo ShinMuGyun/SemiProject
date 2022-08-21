@@ -121,11 +121,28 @@ public class CultureDIDao {
 			pstmt.setInt(2, pageInfo.getEndList());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				CultureDiVo culture = new CultureDiVo();
-				culture.setCcbaMnm1("ccbaMnm1"); 
-				culture.setImageUrl("imageUrl"); 
+				CultureDiVo vo = new CultureDiVo();
+				vo.setCcbaAsno(rs.getString("ccbaasno"));
+				vo.setCcbaKdcd(rs.getInt("ccbaKdcd"));
+				vo.setCcbaCtcd(rs.getString("ccbaCtcd"));
+				vo.setLongitude(rs.getString("longitude"));
+				vo.setLatitude(rs.getString("latitude"));
+				vo.setCcmaName(rs.getString("ccmaName"));
+				vo.setCcbaMnm1(rs.getString("ccbaMnm1"));
+				vo.setGcodeName(rs.getString("gcodeName"));
+				vo.setBcodeName(rs.getString("bcodeName"));
+				vo.setMcodeName(rs.getString("mcodeName"));
+				vo.setScodeName(rs.getString("scodeName"));
+				vo.setCcbaCtcdNm(rs.getString("ccbaCtcdNm"));
+				vo.setCcbaQuan(rs.getString("ccbaQuan"));
+				vo.setCcbaAsdt(rs.getString("ccbaAsdt"));
+				vo.setCcbaLcad(rs.getString("ccbaLcad"));
+				vo.setCcceName(rs.getString("ccceName"));
+				vo.setCcbaAdmin(rs.getString("ccbaAdmin"));
+				vo.setImageUrl(rs.getString("imageUrl"));
+				vo.setContent(rs.getString("content"));
 				
-				list.add(culture);
+				list.add(vo);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -246,7 +263,6 @@ public class CultureDIDao {
 			pstmt.setInt(count++, pageInfo.getEndList());
 			
 			rs = pstmt.executeQuery();
-			int cnt = 1;
 			while (rs.next()) {
 				CultureDiVo vo = new CultureDiVo();
 				vo.setCcbaAsno(rs.getString("ccbaasno"));
@@ -281,7 +297,7 @@ public class CultureDIDao {
 	}
 	
 	
-	//문화제 상세 페이지(문화재)
+	//문화재 상세 페이지(문화재)
 	public CultureDiVo getcuCultureDiVo(Connection conn, String ccbaMnm1) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

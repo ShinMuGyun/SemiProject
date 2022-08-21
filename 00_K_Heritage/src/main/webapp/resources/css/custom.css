@@ -11,9 +11,6 @@
     border-color: #f8f9fa;
 }
 
-
-
-
 .btn-mg {
     border: 1;
     border-color: black;
@@ -284,7 +281,6 @@ cpdimg {
 
 /* ========================================================================================================================= */
 
-
 /* your styles go here */
 
 .font1 {
@@ -354,7 +350,139 @@ cpdimg {
     height: 370px;
     object-fit: cover;
 }
+/* your styles go here */
 
+.font1 {
+    font-family: "나눔스퀘어OTF_ac";
+}
+
+.ks-hr {
+    border: 0px;
+    height: 10px;
+    width: 100%;
+}
+
+.container-ks {
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: -20px;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: 10%;
+}
+
+.container-ks2 {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: 10%;
+    margin-bottom: -30px;
+}
+
+.container-ks3 {
+    width: 100%;
+    padding-right: var(--bs-gutter-x, 0.75rem);
+    padding-left: var(--bs-gutter-x, 0.75rem);
+    margin-right: auto;
+    margin-left: 20%;
+    margin-bottom: -100px;
+    margin-top: -10px;
+    text-align: left;
+}
+
+.text-right-ks {
+    text-align: right;
+}
+
+.post-icon-ks {
+    font-size: small;
+}
+
+.hr-ks {
+    margin: 1rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border-top: 5px;
+    opacity: 1;
+}
+
+.hr2-ks {
+    margin: 1rem 0;
+    color: inherit;
+    background-color: currentColor;
+    border-top: 5px;
+    opacity: 1;
+}
+
+.left-ks {
+    left: 4%;
+}
+
+.right-ks {
+    float: right;
+    margin-right: 400px;
+    padding: 5px;
+}
+
+.right2-ks {
+    float: right;
+    margin-right: 50%;
+    padding: 5px;
+}
+
+.text-orange {
+    --bs-text-opacity: 1;
+    color: rgb(255, 165, 0);
+}
+
+.text-black {
+    color: black;
+}
+
+.text-align-ks {
+    text-align: center;
+}
+
+.bold-ks {
+    font-weight: bold;
+}
+
+.img-full {
+    width: 100%;
+    height: 477.11px;
+    object-fit: cover;
+}
+
+.img-full-main {
+    width: 100%;
+    height: 370px;
+    object-fit: cover;
+}
+
+.font1-bold-ks {
+    font-weight: bold;
+}
+
+.oneline-ks {
+    display: inline-flex;
+}
+
+.myButton-ks {
+    float: right;
+    text-align: center;
+    margin-right: 10px;
+    background-color: #ffffff;
+    border: 1px solid #787878;
+    display: inline-block;
+    cursor: pointer;
+    color: #000000;
+    font-family: Arial;
+    font-size: 16px;
+    padding: 1px 6px;
+    text-decoration: none;
+}
 
 /* ========================================================================================================================= */
 
@@ -549,6 +677,7 @@ cpdimg {
     background-color: orange;
     border-color: orange;
 }
+
 
 
 /* ======================================= */
@@ -768,4 +897,129 @@ input::placeholder {
     background-color: #E7E6E6;
     width: 100%;
     height: 100%;
+}
+
+.text-muted {
+    color: #ED7D31;
+}
+
+/* .img-fluid { */
+/*     height: 150px; */
+/*     width: 600px; */
+/* } */
+/* 문의게시판 css */
+
+.main-text {
+    margin-left: 10%;
+    color: #ED7D31;
+    font-size: 60px;
+}
+
+.sub-text {
+    margin-left: 10%;
+    font-size: 18px;
+}
+
+.board-select {
+    margin-left: 10%;
+}
+
+.table {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#board-sum {
+    width: 80%;
+    height: 60px;
+    background-color: #F0F0F0;
+    margin-left: 10%;
+}
+
+.board-type {
+    margin-left: 10%;
+}
+
+.search-yj2 {
+    width: 5%;
+}
+
+.title-text-yj {
+    margin-left: 5%;
+    color: #ED7D31;
+    font-size: 30px;
+}
+
+
+/* 퀴즈 - 메인 css */
+
+.quiz-image {
+    width: 400px;
+    height: 450px;
+    display: block;
+    margin: auto;
+}
+
+#quiz-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.quiz-icon-left {
+    margin-left: 10%;
+    float: left;
+    justify-content: left;
+}
+
+.quiz-icon-right {
+    margin-right: 10%;
+    float: right;
+    justify-content: right;
+}
+
+#quiz-menu ul li {
+    list-style: none;
+    color: black;
+    float: left;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px #D0CECE;
+}
+
+#quiz-menu .menuLink {
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 200px;
+    font-size: 20px;
+    border: 1px #D0CECE;
+}
+
+#quiz-menu .menuLink:hover {
+    background-color: #F4B183;
+}
+
+.quiz-maintext {
+    text-align: center;
+    font-size: 40px;
+}
+
+.quiz-question {
+    text-align: center;
+    font-size: 25px;
+}
+
+.quiz-select {
+    text-align: center;
+    font-size: 25px;
+}
+
+.hr-yj1 {
+    color: black;
+    width: 50%;
+    height: 3px;
+    margin: auto 0;
+    align-items: center;
 }

@@ -66,7 +66,7 @@ String path = request.getContextPath();
 									name="loginID" id="loginID" type="text" required
 									data-msg="아이디를 입력해주세요"
 									placeholder="이메일형식으로 입력하세요(aaaa@naver.com)">
-								<input type="button" id="checkDuplicate2" value="중복검사"/> 
+								<input class="mt-2"type="button" id="checkDuplicate2" value="중복검사"/> 
 
 						</div>
 						<div class="mb-4">

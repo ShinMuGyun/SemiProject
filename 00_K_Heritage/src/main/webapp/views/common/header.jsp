@@ -27,6 +27,10 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="all,follow">
+<!-- 폰트설정 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kirang+Haerang&display=swap" rel="stylesheet">
 <!-- Price Slider Stylesheets -->
 <link rel="stylesheet"
 	href="<%=path%>/resources/vendor/nouislider/nouislider.css">
@@ -98,8 +102,8 @@
 							href="<%=path%>/culList">문화재검색</a></li>
 						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/museum">박물관검색</a></li>
-						<li class="nav-item"><a class="nav-link" href="#" style="font-size: 1.5rem" >게시판</a></li>
-						<li class="nav-item"><a class="nav-link" href="#" style="font-size: 1.5rem" >퀴즈</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=path%>/boardlist?cid=1" style="font-size: 1.5rem" >게시판</a></li>
+						<li class="nav-item"><a class="nav-link" href="<%=path%>/views/quiz/quizlist.jsp" style="font-size: 1.5rem" >퀴즈</a></li>
 						<li class="nav-item"><a class="nav-link" style="font-size: 1.5rem"
 							href="<%=path%>/views/dokam/dokam.jsp">나의 도감</a></li>
 					</ul>

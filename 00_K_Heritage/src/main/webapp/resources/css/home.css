@@ -315,14 +315,9 @@ cpdimg {
     width: 100%;
 }
 
-.container-ks {
-    width: 100%;
-    margin-top: 50px;
-    margin-bottom: -20px;
-    padding-right: var(--bs-gutter-x, 0.75rem);
-    padding-left: var(--bs-gutter-x, 0.75rem);
-    margin-right: auto;
-    margin-left: 10%;
+.margin-bottom-ks {
+    margin-bottom: -100px;
+    text-align: left;
 }
 
 .container-ks2 {
@@ -789,6 +784,171 @@ input::placeholder {
     height: 100%;
 }
 
+/* 문의게시판 css */
+
+.main-text {
+    margin-left: 10%;
+    color: #ED7D31;
+    font-size: 60px;
+}
+
+.sub-text {
+    margin-left: 10%;
+    font-size: 18px;
+}
+
+.board-select {
+    margin-left: 10%;
+}
+
+.table {
+    margin-left: 10%;
+}
+
+#board-sum {
+    width: 80%;
+    height: 60px;
+    background-color: #F0F0F0;
+    margin-left: 10%;
+}
+
+.board-type {
+    margin-left: 10%;
+}
+
+.search-yj2 {
+    width: 5%;
+}
+
+.title-text-yj {
+    margin-left: 5%;
+    color: #ED7D31;
+    font-size: 30px;
+}
+
+
+
+/* 퀴즈 - 메인 css */
+
+.quiz-icon-size {
+    font-size: 25px;
+}
+
+.quiz-icon-left {
+    margin-left: 20%;
+    float: left;
+    justify-content: left;
+}
+
+.quiz-icon-right {
+    margin-right: 20%;
+    float: right;
+    justify-content: right;
+}
+
+.quiz-image {
+    width: 400px;
+    height: 450px;
+    display: block;
+    margin: auto;
+}
+
+#quiz-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#quiz-menu ul li {
+    list-style: none;
+    color: black;
+    float: left;
+    line-height: 50px;
+    vertical-align: middle;
+    text-align: center;
+    border: 1px #D0CECE;
+}
+
+#quiz-menu .menuLink {
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 200px;
+    font-size: 20px;
+    border: 1px #D0CECE;
+}
+
+#quiz-menu .menuLink:hover {
+    background-color: #F4B183;
+}
+
+.quiz-maintext {
+    text-align: center;
+    font-size: 40px;
+}
+
+.quiz-question {
+    text-align: center;
+    font-size: 25px;
+}
+
+.quiz-select {
+    text-align: center;
+    font-size: 25px;
+}
+
+.hr-yj1 {
+    color: black;
+    width: 50%;
+    height: 3px;
+    margin: auto 0;
+    align-items: center;
+}
+
+
+/* 문의게시판 글작성 css */
+
+.main-text {
+    margin-left: 10%;
+    color: #ED7D31;
+    font-size: 60px;
+}
+
+.sub-text {
+    margin-left: 10%;
+    font-size: 18px;
+}
+
+.board-select {
+    margin-left: 10%;
+}
+
+.table {
+    width: 80%;
+    margin-left: 10%;
+}
+
+#board-sum {
+    width: 80%;
+    height: 60px;
+    background-color: #F0F0F0;
+    margin-left: 10%;
+}
+
+.board-type {
+    margin-left: 10%;
+}
+
+.search-yj2 {
+    width: 5%;
+}
+
+.title-text-yj {
+    margin-left: 11%;
+    color: #ED7D31;
+    font-size: 30px;
+}
+
 /* 보성 추가 */
 
 .headersize{
@@ -818,4 +978,9 @@ input::placeholder {
     padding-bottom: 1.5rem !important;
 }
 
+/* 전체 폰트 바꾸기 */
+
+*:not(i){
+	font-family: 'Noto Sans KR', sans-serif !important;
+}
 
