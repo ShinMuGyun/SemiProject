@@ -48,7 +48,7 @@
 				<div class="row mb-3">
 					<div class="col-md-6 d-flex align-items-center mb-3 mb-md-0">
 						<p class="text-muted">
-							2022.07.21<br>PM 3:00 - PM 6:00
+							2022.08.22<br>PM 3:00 - PM 6:00
 						</p>
 					</div>
 				</div>

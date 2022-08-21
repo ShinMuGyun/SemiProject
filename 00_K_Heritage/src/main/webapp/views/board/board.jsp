@@ -34,7 +34,8 @@
 	<a class="text-black" href="<%=path%>/boardlist?cid=2">리뷰게시판</a><span class="mx-1">|</span> 
 	<a class="text-black" href="<%=path%>/boardlist?cid=3">문의게시판</a>
 	<%if(loginMember != null) {%>
-	<a style="float: right" class="text-black" href="<%=path%>/boardwrite.do?cid=<%=cid%>">글쓰기</a>
+	<a style="float: right" class="text-orange mx-2" href="<%=path%>/boardwrite.do?cid=<%=cid%>">
+		<i class="fa fa-pen post-icon-ks"></i>&nbsp;&nbsp;&nbsp;글쓰기</a>	
 	<%} %>
 </div>
 

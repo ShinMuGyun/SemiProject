@@ -28,27 +28,23 @@
 						class="mx-1">|</span> <%=b.getBdate() %> <span class="mx-1">|</span>
 						<%if(loginMember != null) {%>
 							<%if(loginMember.getUCode() == b.getUcode() || loginMember.getId().equals("admin@naver.com"))  {%>
-								<a class="text-orange mx-2" href="#">
+								<a class="text-orange mx-2" href="<%=path%>/boardUpdate.do?bnum=<%=b.getBnum()%>">
 									<i class="fa fa-pen post-icon-ks"></i> 수정하기
+								</a>
+								<a class="text-orange mx-2" href="<%=path%>/boarddelete?bnum=<%=b.getBnum()%>">
+									<i class="fa fa-pen post-icon-ks"></i> 삭제하기
 								</a>
 							<%} %>
 						<%} %>
-				</p>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xl-8 col-lg-10 mx-auto">
 				<!-- lg와 xl중에 choice-->
-				<div class="text-content">
-					<img class="img-fluid w-100"
-						src="<%=path%>/resources/img/photo-post-1.jpg">
+				<div class="text-content" id ="my_div">
 					<p>
 						<%=b.getContent() %>
-					</p>
-					<figure class="figure mb-3">
-						<img class="figure-img img-fluid w-100"
-							src="<%=path%>/resources/img/photo-post-2.jpg">
-					</figure>
+					</p>	
 				</div>
 				<br>
 				<hr class="hr2-ks">
@@ -117,4 +113,5 @@
 		</div>
 	</div>
 </section>
+
 <%@ include file="/views/common/footer.jsp"%>

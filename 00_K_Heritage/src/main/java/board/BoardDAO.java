@@ -37,15 +37,18 @@ public class BoardDAO {
 
 	public int updateBoard(Connection conn, BoardVo b) {
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO bbs VALUES(BNUM.nextval, ? , ? , SYSDATE, ?, ?, 0, DEFAULT)";
+		String sql = "UPDATE bbs b SET b.title = ? ,b.content= ?, b.status=? "
+					+ "where b.bnum = ?";
+		
 		int result = 0;
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, b.getTitle());
 			pstmt.setString(2, b.getContent());
-			pstmt.setInt(3, b.getCid());
-			pstmt.setInt(4, b.getUcode());
-
+			pstmt.setString(3, b.getStatus());			
+			pstmt.setInt(4, b.getBnum());
+			
 			result = pstmt.executeUpdate();
 
 		} catch (Exception e) {

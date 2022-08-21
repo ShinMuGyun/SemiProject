@@ -1,7 +1,8 @@
+<%@page import="board.BoardVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	int cid = Integer.parseInt(request.getParameter("cid"));
+	BoardVo b = (BoardVo)request.getAttribute("board");
 %>
 
 
@@ -24,11 +25,11 @@
 
     <br><br><br>
     <div class="title-text-yj">
-    	<%if(cid == 1){%>
+    	<%if(b.getCid() == 1){%>
     		<b>자유게시판</b>	
-    	<%}else if(cid == 2){%>
+    	<%}else if(b.getCid() == 2){%>
     		<b>리뷰게시판</b>
-    	<%}else if(cid == 3){%>
+    	<%}else if(b.getCid() == 3){%>
     		<b>문의게시판</b>
     	<%} %>		
     </div>
@@ -37,26 +38,23 @@
 
     <!-- 글쓰기 폼 시작 -->
     <main role="main" class="container">
-        <form name="form" method="get" action="<%=path%>/boardwrite">
+        <form name="form" method="get" action="<%=path%>/boardUpdate">
             <div class="pt-1"></div>
-            <input type="text" name="title" placeholder="제목을 입력하세요" style="border-radius:5px; width:100%; padding:5px;">
+            <input type="text" name="title" style="border-radius:5px; width:100%; padding:5px;"
+            	value="<%=b.getTitle() %>"
+            >
             
             <div class="pt-1">
-                <textarea id="summernote" name="contents"></textarea>
+                <textarea id="summernote" name="contents"><%=b.getContent() %></textarea>
             </div>
             <script>
-                $('#summernote').summernote({
-                    placeholder: '내용을 입력해주세요',
-                    tabsize: 2,
-                    height: 300
-                });
+                $('#summernote').summernote({});
             </script>
             <br>
             <div class="pt-1 text-right">
-           		<input type="hidden" name="cid" value="<%=cid %>"/>
-           		<input type="hidden" name="ucode" value="<%=loginMember.getUCode() %>"/>
-                <button class="btn btn btn-yj2" type="submit" style="width:80px; height:30px; margin:5px; padding:2px; background-color: #F4B183; color: white;">등록</button>
-                <button class="btn btn btn-yj3" type="reset" style="width:80px; height:30px; padding:2px; background-color: #AFABAB; color: white;">초기화</button>
+           		<input type="hidden" name="bnum" value="<%=b.getBnum() %>"/>
+                <button class="btn btn btn-yj2" type="submit" style="width:80px; height:30px; margin:5px; padding:2px; background-color: #F4B183; color: white;">완료</button>
+                <button class="btn btn btn-yj3" type="reset" style="width:80px; height:30px; padding:2px; background-color: #AFABAB; color: white;">취소</button>
             </div>
         </form>
     </main>

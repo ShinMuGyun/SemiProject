@@ -145,7 +145,7 @@
 					</div>
 					<div class="card-body p-4">
 						<div style="text-align: center;">
-							<button class="btn btn-outline-primary-mi mb-4" type="button" onClick="location.href='<%=path%>/mypageFaAndRe.do'">박물관 즐겨찾기 & 예약내역&nbsp;></button>
+							<button class="btn btn-outline-primary-mi mb-4" type="button" onClick="location.href='<%=path%>/views/reservation/mu_favorite_reservation.jsp'">박물관 즐겨찾기 & 예약내역&nbsp;></button>
 						</div>
 					</div>
 				</div>
