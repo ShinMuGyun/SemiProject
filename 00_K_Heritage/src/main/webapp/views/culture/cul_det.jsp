@@ -114,9 +114,28 @@
 						<div class="cpd">
 
 							<div class="tac">
-								<img class="cpdimg border-radius-bs"
-									src="<%=path%>/resources/img/photo/cpdimg.jpg"
-									style="width: 98%;">
+								 <div id="map" class="border-radius-bs" style="height: 350px"></div>
+  								 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20ac2dfad3cd59b659261a28d8b4c104"></script>
+    							 <script>
+        							var container = document.getElementById('map');
+        							var options = {
+						            	center: new kakao.maps.LatLng(<%=c.getLatitude()%>, <%=c.getLongitude()%>),
+						            	level: 3
+						    		   };
+ 
+ 							       var map = new kakao.maps.Map(container, options); // 지도 생성
+ 							       
+ 							   	  // 마커가 표시될 위치입니다 
+ 							      var markerPosition  = new kakao.maps.LatLng(<%=c.getLatitude()%>, <%=c.getLongitude()%>); 
+ 							       
+ 							      // 마커 생성
+ 							      var marker = new kakao.maps.Marker({
+ 							    	    position: markerPosition
+ 							    	});
+ 							       
+ 							  	// 마커가 지도 위에 표시되도록 설정합니다
+ 							     	marker.setMap(map);
+    							</script>
 							</div>
 
 							<div class="mt-5">

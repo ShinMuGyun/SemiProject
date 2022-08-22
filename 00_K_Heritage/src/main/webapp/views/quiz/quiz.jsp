@@ -39,7 +39,7 @@
 
 <div class="quiz-image"
 	style="text-align: center; width: 400px; height: 450px;">
-	<img src="img\이팝나무.jpg" class="quiz-image" style="text-align: center;"><br>
+	<img src="<%=path%>/resources/img/tree.jpg" class="quiz-image" style="text-align: center;"><br>
 </div>
 
 <div class="quiz-select">
@@ -52,9 +52,9 @@
 <div>
 	<p>
 		<a
-			class="btn btn-link text-orange quiz-icon-left quiz-icon-size font1"
+			class="text-orange quiz-icon-left quiz-icon-size font1"
 			href="#"><i class="fa fa-question-circle"></i><br>힌트보기</a> <a
-			class="btn btn-link text-orange quiz-icon-right quiz-icon-size font1"
+			class="text-orange quiz-icon-right quiz-icon-size font1"
 			href="#"><i class="fa fa-arrow-circle-right"></i><br>다음 문제로</a>
 	</p>
 </div>

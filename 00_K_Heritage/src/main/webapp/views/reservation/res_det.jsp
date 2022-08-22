@@ -11,17 +11,6 @@
 
 <script src="<%=path%>/resources/js/map-detail.js" ></script>
 
-<script type="text/javascript">
-	createDetailMap({
-		mapId : 'detailSideMap',
-		mapZoom : 18,
-		mapCenter : [ 40.732346, -74.0014247 ],
-		markerShow : true,
-		markerPosition : [ 40.732346, -74.0014247 ],
-		markerPath : '/resources/img/marker.svg',
-	})
-</script>
-
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-7 col-xl-5 px-4 pb-4 ps-xl-5 pe-xl-5">
@@ -180,11 +169,32 @@
 				</button>
 			</div>
 		</div>
+		
 		<div class="col-lg-5 col-xl-7 map-side-lg px-lg-0">
-			<div class="map-full shadow-left" id="detailSideMap"></div>
+			<div  id="map" class="border-radius-bs" style="height: 1000px"></div>
+			 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=20ac2dfad3cd59b659261a28d8b4c104"></script>
+    				<script>
+						var container = document.getElementById('map');
+						var options = {
+		            	center: new kakao.maps.LatLng(37.52470233,126.9777412),
+		            		level: 3
+		    		   	};
+
+				        var map = new kakao.maps.Map(container, options); // 지도 생성
+					       
+				   	    // 마커가 표시될 위치입니다 
+				        var markerPosition  = new kakao.maps.LatLng(37.52470233,126.9777412); 
+				       
+				        // 마커 생성
+					    var marker = new kakao.maps.Marker({
+					    	position: markerPosition
+					    });
+				       
+				  	    // 마커가 지도 위에 표시되도록 설정합니다
+				     	marker.setMap(map);
+					</script>
 		</div>
 	</div>
 </div>
-
 
 <%@ include file="/views/common/footer.jsp"%>
